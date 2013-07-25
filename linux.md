@@ -65,9 +65,10 @@ sudo su (login as super user)
 df -ahT /foo/bar/ (displays file system disk usage and partition types; if path is ommited all mounted disk usage is displayed)
 mount (used for mounting filesystem or displaying the mounted filesystem if used without options)
 
+cd .. (go to parent  directory)
 cd ~ (go to home directory)
 cd - (returns to the previos location)
-ls -lah (list directory contents and show hidden files)
+ls -lah (list directory contents with details)
 du -sh (display total folder size)
 dig -x 176.9.134.62 (DNS lookup - reverse lookup of IP adress)
 mv bla.x foo.x (move - move file to the directory or if the directory is same rename the file)
@@ -123,6 +124,9 @@ find /foo/bar/ -name "foobar*.pdf" -print0 | xargs -0 -I {} cp {} /tmp (find all
 
 apport /foo/bar/crash.report - opens apport crash log (/var/log/apport.log usually contains additinal info about crash reports and coredumps)
 gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file and you can see backtrace with "bt" or "bt full")
+
+which foo (locate a command foo that will be executed - useful for debugging PATH problems)
+command -v foo (write a string to standard output that indicates the pathname or command that will be used by the shell - can be used in bash script instead of which to find what file will be executed in curr. environment)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 MySQL
