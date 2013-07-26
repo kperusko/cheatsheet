@@ -128,6 +128,8 @@ gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file an
 which foo (locate a command foo that will be executed - useful for debugging PATH problems)
 command -v foo (write a string to standard output that indicates the pathname or command that will be used by the shell - can be used in bash script instead of which to find what file will be executed in curr. environment)
 
+cat foobar 2>&1 | tee bar.txt (redirect stderr to stdout, write it to the bar.txt file and display it to the screen)
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 MySQL
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
