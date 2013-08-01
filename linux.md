@@ -4,6 +4,9 @@ ps -p $$ (displays the current shell you're using)
 pstree -a (display a tree of processes with command line arguments)
 kill -9 12030 (kills process with PID 12030. -9 sends KILL signal to process so use it only when absolutely necessary)
 
+man -k foo (search foo in man pages descriptions)
+man -wK foo (search foo in man pages bodies)
+
 echo $? (reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function)
 
 sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
@@ -122,8 +125,10 @@ cat /proc/<pid>/limits (displays ulimits for the process with process id <pid>)
 
 find /foo/bar/ -name "foobar*.pdf" -print0 | xargs -0 -I {} cp {} /tmp (find all pdf files in /foo/bar folder that are named foobar* and copy them to /tmp folder
 
-apport /foo/bar/crash.report - opens apport crash log (/var/log/apport.log usually contains additinal info about crash reports and coredumps)
+apport /foo/bar/crash.report - opens apport crash log (check /var/crash or /var/log/apport.log usually contains additinal info about crash reports and coredumps)
 gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file and you can see backtrace with "bt" or "bt full")
+apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump extracted from the report)
+
 
 which foo (locate a command foo that will be executed - useful for debugging PATH problems)
 command -v foo (write a string to standard output that indicates the pathname or command that will be used by the shell - can be used in bash script instead of which to find what file will be executed in curr. environment)
