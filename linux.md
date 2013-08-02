@@ -1,5 +1,5 @@
 pkill -f procnamex (kills all processes with name procnamex)
-ps -aux | grep procnamex (show all processes with name procnamex)
+ps aux | grep procnamex (show all processes with name procnamex)
 ps -p $$ (displays the current shell you're using)
 pstree -a (display a tree of processes with command line arguments)
 kill -9 12030 (kills process with PID 12030. -9 sends KILL signal to process so use it only when absolutely necessary)
@@ -10,14 +10,13 @@ man -wK foo (search foo in man pages bodies)
 echo $? (reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function)
 echo $$ (displays the current process PID)
 echo $! (displays the PID of the last backgrounded process)
-sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
 
-top (show linux tasks / processes)
-htop (proces monitor)
-atop (resource monitor)
+sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
 
 w (who is logged and what they are doing)
 last (show listing of last logged in users)
+whoami (shows your username)
+id (prints info about user: real / effective userID, groupID etc.)
 
 free -m (display amount of free and used memory in the system -m in MB)
 dmidecode (displays DMI (SMBIOS) - all system information)
@@ -28,19 +27,23 @@ ifstat (ethernet  traffic monitor)
 apachetop -f /var/log/apache2/access.log (displays real-time web server statistics)
 dstat (generating system resources - usefull monitor tool)
 
-history (show history of all commands in shell) - bash history is written in the file ~/.bash_history
-history -c (deletes shell history from RAM)
-export HISTTIMEFORMAT="[%F] [%T] " (set the HISTTIMEFORMAT variable so that the history contains date and time for each command - only for current session - add to ~/.bash_profile to make it permanent)
-
 sysctl -a (display all kernel parameters at runtime)
 lsb_release -a (displays version of a ubuntu OS)
 uname -a (more general system information)
 cat /proc/cpuinfo (display info about cpu)
 
-tar cvf foo.tar bar/ (creates tar archive with name foo.tar from the folder bar)
-tar xvf foo.tar (extracts tar in current directory)
+top (show linux tasks / processes)
+htop (proces monitor)
+atop (resource monitor)
 
-sed -i "s/foo/bar" bazfile (inplace search and replace in files - replaces foo with bar in file bazfile)
+history (show history of all commands in shell) - bash history is written in the file ~/.bash_history
+history -c (deletes shell history from RAM)
+export HISTTIMEFORMAT="[%F] [%T] " (set the HISTTIMEFORMAT variable so that the history contains date and time for each command - only for current session - add to ~/.bash_profile to make it permanent)
+
+tar cvf foo.tar bar/ (creates gzipped tar archive with name foo.tar from the folder bar)
+tar xvf foo.tar (extracts gzipped tar in current directory)
+
+sed -i "s/foo/bar/g" bazfile (global inplace search and replace in files - replaces foo with bar in file bazfile)
 
 -----------------
 ssh root@hostname.example.com -p 12345 *** OR *** ssh hostaname.example.com -l root -p 12345 (ssh connection on server hostaname.example.com with username root on port 12345)
