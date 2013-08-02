@@ -32,6 +32,8 @@ lsb_release -a (displays version of a ubuntu OS)
 uname -a (more general system information)
 cat /proc/cpuinfo (display info about cpu)
 
+stat foo.txt (display file status - similar to properties on win systems - displays access/modify/change dates and other useful info for the file)
+
 top (show linux tasks / processes)
 htop (proces monitor)
 atop (resource monitor)
