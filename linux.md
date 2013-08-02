@@ -8,7 +8,8 @@ man -k foo (search foo in man pages descriptions)
 man -wK foo (search foo in man pages bodies)
 
 echo $? (reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function)
-
+echo $$ (displays the current process PID)
+echo $! (displays the PID of the last backgrounded process)
 sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
 
 top (show linux tasks / processes)
