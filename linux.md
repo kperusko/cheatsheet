@@ -7,9 +7,12 @@ kill -9 12030 (kills process with PID 12030. -9 sends KILL signal to process so 
 man -k foo (search foo in man pages descriptions)
 man -wK foo (search foo in man pages bodies)
 
-echo $? (reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function)
-echo $$ (displays the current process PID)
-echo $! (displays the PID of the last backgrounded process)
+$? (reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function)
+$$ (current process PID)
+$! (PID of the last backgrounded process)
+!! (repeat last command - useful combo - sudo !!)
+!$ (last argument of the previous command)
+!:n (n-th argument of the previous command)
 
 sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
 
@@ -121,9 +124,14 @@ sudo a2dissite imesitea.com (disable virtual host site in apache)
 sudo a2enmod deflate (rewrite - omogućavanje apache2 modula deflate / rewrite )
 sudo a2dismod
 
-head foo (output the first part of the file foo)
-tail foo (output the last part of the file foo)
+head -100 foo (output the first 100 lines of the file foo)
+head -n-50 foo (output all lines from file but skip last 50 lines)
+tail -f foo (output appended data as the file foo grows - very useful when monitoring log files)
+tail -100 foo (output last 100 lines)
+tail -n+50 foo (output all lines from file but skip first 50 lines)
 cat foo (output the entire file in the standard output)
+
+yes | nl | head -100 > foobar.txt (creates foobar.txt file that contains 100 lines, each line contains line numer and "yes" string)
 
 tzselect (debian timezone select)
 
