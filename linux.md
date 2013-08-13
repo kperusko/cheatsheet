@@ -18,6 +18,7 @@ sudo update-rc.d foobar defaults (installs the init script foobar for all run le
 
 w (who is logged and what they are doing)
 last (show listing of last logged in users)
+lastlog (reports the most recent login of all users or of a given user)
 whoami (shows your username)
 id (prints info about user: real / effective userID, groupID etc.)
 
