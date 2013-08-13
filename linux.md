@@ -37,6 +37,8 @@ uname -a (more general system information)
 cat /proc/cpuinfo (display info about cpu)
 
 stat foo.txt (display file status - similar to properties on win systems - displays access/modify/change dates and other useful info for the file)
+file foo.txt (detect file type; -bi will detect encoding; try to use chardet if cannot detect charset properly)
+chardet foo.txt (universal character encoding detector)
 
 top (show linux tasks / processes)
 htop (proces monitor)
