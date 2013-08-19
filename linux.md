@@ -13,6 +13,9 @@ $! (PID of the last backgrounded process)
 !! (repeat last command - useful combo - sudo !!)
 !$ (last argument of the previous command)
 !:n (n-th argument of the previous command)
+!n (execute n-th line in history)
+!-5 (execute current -5 line in history)
+!foo (execute the last foo command in history)
 
 history (show history of all commands in shell) - bash history is written in the file ~/.bash_history
 history -c (deletes shell history from RAM)
