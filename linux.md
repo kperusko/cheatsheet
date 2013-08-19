@@ -14,6 +14,11 @@ $! (PID of the last backgrounded process)
 !$ (last argument of the previous command)
 !:n (n-th argument of the previous command)
 
+history (show history of all commands in shell) - bash history is written in the file ~/.bash_history
+history -c (deletes shell history from RAM)
+export HISTTIMEFORMAT="[%F] [%T] " (set the HISTTIMEFORMAT variable so that the history contains date and time for each command - only for current session - add to ~/.bash_profile to make it permanent)
+fc (processes command line history - open and editor to modify and reexecute previously entered commands)
+
 sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
 
 w (who is logged and what they are doing)
@@ -43,10 +48,6 @@ chardet foo.txt (universal character encoding detector)
 top (show linux tasks / processes)
 htop (proces monitor)
 atop (resource monitor)
-
-history (show history of all commands in shell) - bash history is written in the file ~/.bash_history
-history -c (deletes shell history from RAM)
-export HISTTIMEFORMAT="[%F] [%T] " (set the HISTTIMEFORMAT variable so that the history contains date and time for each command - only for current session - add to ~/.bash_profile to make it permanent)
 
 tar cvf foo.tar bar/ (creates gzipped tar archive with name foo.tar from the folder bar)
 tar xvf foo.tar (extracts gzipped tar in current directory)
