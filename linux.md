@@ -19,6 +19,8 @@ history -c (deletes shell history from RAM)
 export HISTTIMEFORMAT="[%F] [%T] " (set the HISTTIMEFORMAT variable so that the history contains date and time for each command - only for current session - add to ~/.bash_profile to make it permanent)
 fc (processes command line history - open and editor to modify and reexecute previously entered commands)
 
+read (read one line from standard input - usefull when writing shell scripts and prompting user for info)
+
 sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
 
 w (who is logged and what they are doing)
@@ -205,3 +207,16 @@ facter (collects and displays facts about system. Installed with puppet)
 
 !!!!!!!!!!!!!!!!!!!!!
 etckeeper
+!!!!!!!!!!!!!!!!!!!!!
+
+!!!!!!!!!!!!!!!!!!!!!
+shell scripting
+!!!!!!!!!!!!!!!!!!!!!
+
+$1 (1st command line argument)
+$n (n-th command line argument)
+$0 (name by which the script has been invoked)
+$# (number of arguments supplied, without $0)
+$* (all arguments at once, but without $0)
+
+local foo (defines local var in the function)
