@@ -82,6 +82,7 @@ sftp root@hostname.example.com  (SFTP connection to remote server)
 get Foo.txt (with connected with sftp gets the file Foo.txt from remote server)
 
 sudo su (login as super user)
+su - foobar (login as foobar user - but spawn shell in login mode - e.g. bash reads ~/.bash_profile in login mode and ~/.bashrc in nonlogin mode)
 
 df -ahT /foo/bar/ (displays file system disk usage and partition types; if path is ommited all mounted disk usage is displayed)
 mount (used for mounting filesystem or displaying the mounted filesystem if used without options)
