@@ -41,6 +41,8 @@ ifstat (ethernet  traffic monitor)
 apachetop -f /var/log/apache2/access.log (displays real-time web server statistics)
 dstat (generating system resources - usefull monitor tool)
 
+time foobar (runs foobar and summarizes system resource usage)
+
 sysctl -a (display all kernel parameters at runtime)
 lsb_release -a (displays version of a ubuntu OS)
 uname -a (more general system information)
@@ -119,8 +121,8 @@ Arrow up / down (displays the previously used commands)
 Shift+Insert (paste)
 
 apt-get install packageNameFoo (installs a packageNameFoo program from the default repository)
-apt-get update (updates versions of the apps)
-apt-get purge packageNameFoo (deletes packageNameFoo program)
+apt-get update (resynchronizes package index from their sources - updates versions of the apps in the APT)
+apt-get purge packageNameFoo (remove packageNameFoo program and clear configuration files for the package)
 
 apt-cache show packageNameFoo (displays detailed info about current and installed package)
 apt-cache policy packageNameFoo (displays only verision info about current and installed package)
