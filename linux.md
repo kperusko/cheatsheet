@@ -1,11 +1,12 @@
 pkill -f procnamex (kills all processes with name procnamex)
 ps aux | grep procnamex (show all processes with name procnamex)
-ps -p $$ (displays the current shell you're using)
+ps -p $$ (displays the current shell that is used)
 pstree -a (display a tree of processes with command line arguments)
 kill -9 12030 (kills process with PID 12030. -9 sends KILL signal to process so use it only when absolutely necessary)
 
 man -k foo (search foo in man pages descriptions)
 man -wK foo (search foo in man pages bodies)
+whatis (displays short descript from the manual)
 
 $? (reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function)
 $$ (current process PID)
@@ -15,6 +16,7 @@ $! (PID of the last backgrounded process)
 !:n (n-th argument of the previous command)
 
 sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
+sudo update-rc.d foobar start 80 2 3 4 5 . stop 20 S 1 6 (foobar service will be started at sequence 20 in levels 2-5 and stoped at sequence 20 in level S, 1 and 6)
 
 w (who is logged and what they are doing)
 last (show listing of last logged in users)
@@ -31,9 +33,12 @@ apachetop -f /var/log/apache2/access.log (displays real-time web server statisti
 dstat (generating system resources - usefull monitor tool)
 
 sysctl -a (display all kernel parameters at runtime)
-lsb_release -a (displays version of a ubuntu OS)
-uname -a (more general system information)
+lsb_release -a (displays distribution version information)
+uname -a (prints more general system information)
+lsof (display all open files)
+telinit (change system run level)
 cat /proc/cpuinfo (display info about cpu)
+cat /proc/meminfo (display info about memory)
 
 stat foo.txt (display file status - similar to properties on win systems - displays access/modify/change dates and other useful info for the file)
 
@@ -63,7 +68,7 @@ Host foobar
 	LocalForward 9999 localhost:10000
 	IdentityFile ~/.ssh/somkeynames.key
 	
-ssh -f -N foobar (open local port fowarding: -f execute in background, -N don't execute remote command)
+ssh -f -N foobar (open local port fowarding: -f execute in background, -N do not execute remote command)
 
 foobar can be anyname you like
 LocalForward/IdentityFile is optional
@@ -89,8 +94,8 @@ chown administrator foo (set admnistrator user as owner of the file / folder foo
 chgrp administrator foo (set admnistrator user as group of the file / folder foo)
 
 touch foo.bar (create file with name foo.bar)
-echo "foobar" > foo.bar (creates file foo.bar if doesn't exists or overwrites existing file and writes foobar inside)
-echo "foobar" >> foo.bar (creates file foo.bar if doesnt exists and writes foobar inside, appends to the file if file already exits)
+echo "foobar" > foo.bar (creates file foo.bar if does not exists or overwrites existing file and writes foobar inside)
+echo "foobar" >> foo.bar (creates file foo.bar if does not exists and writes foobar inside, appends to the file if file already exits)
 
 vim imefilea.txt ili vi imefilea.txt (opens text editor VIM)
 INSERT (keyboard button) enables editing the file
@@ -147,6 +152,8 @@ apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump e
 which foo (locate a command foo that will be executed - useful for debugging PATH problems)
 command -v foo (write a string to standard output that indicates the pathname or command that will be used by the shell - can be used in bash script instead of which to find what file will be executed in curr. environment)
 
+whereis (locate binary, source and man pages for command)
+
 cat foobar 2>&1 | tee bar.txt (redirect stderr to stdout, write it to the bar.txt file and display it to the screen)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -187,7 +194,7 @@ hg status --rev .:tip (dry run for update - compare the pulled changes with curr
 !!!!!!!!!!!!!!!!!!!!!
 SVN
 !!!!!!!!!!!!!!!!!!!!!
-svn update --set-depth exclude foobar (excludes folder from svn update - usefull when don't want to update large folders e.g. containing db data files)
+svn update --set-depth exclude foobar (excludes folder from svn update - usefull when do not want to update large folders e.g. containing db data files)
 svn update --set-depth infinity (restores the excluded folders so that they can be updated)
 
 !!!!!!!!!!!!!!!!!!!!!
