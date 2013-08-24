@@ -14,12 +14,23 @@ $! (PID of the last backgrounded process)
 !! (repeat last command - useful combo - sudo !!)
 !$ (last argument of the previous command)
 !:n (n-th argument of the previous command)
+!n (execute n-th line in history)
+!-5 (execute current -5 line in history)
+!foo (execute the last foo command in history)
+
+history (show history of all commands in shell) - bash history is written in the file ~/.bash_history
+history -c (deletes shell history from RAM)
+export HISTTIMEFORMAT="[%F] [%T] " (set the HISTTIMEFORMAT variable so that the history contains date and time for each command - only for current session - add to ~/.bash_profile to make it permanent)
+fc (processes command line history - open and editor to modify and reexecute previously entered commands)
+
+read (read one line from standard input - usefull when writing shell scripts and prompting user for info)
 
 sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
 sudo update-rc.d foobar start 80 2 3 4 5 . stop 20 S 1 6 (foobar service will be started at sequence 20 in levels 2-5 and stoped at sequence 20 in level S, 1 and 6)
 
 w (who is logged and what they are doing)
 last (show listing of last logged in users)
+lastlog (reports the most recent login of all users or of a given user)
 whoami (shows your username)
 id (prints info about user: real / effective userID, groupID etc.)
 
@@ -32,6 +43,8 @@ ifstat (ethernet  traffic monitor)
 apachetop -f /var/log/apache2/access.log (displays real-time web server statistics)
 dstat (generating system resources - usefull monitor tool)
 
+time foobar (runs foobar and summarizes system resource usage)
+
 sysctl -a (display all kernel parameters at runtime)
 lsb_release -a (displays distribution version information)
 uname -a (prints more general system information)
@@ -41,14 +54,12 @@ cat /proc/cpuinfo (display info about cpu)
 cat /proc/meminfo (display info about memory)
 
 stat foo.txt (display file status - similar to properties on win systems - displays access/modify/change dates and other useful info for the file)
+file foo.txt (detect file type; -bi will detect encoding; try to use chardet if cannot detect charset properly)
+chardet foo.txt (universal character encoding detector)
 
 top (show linux tasks / processes)
 htop (proces monitor)
 atop (resource monitor)
-
-history (show history of all commands in shell) - bash history is written in the file ~/.bash_history
-history -c (deletes shell history from RAM)
-export HISTTIMEFORMAT="[%F] [%T] " (set the HISTTIMEFORMAT variable so that the history contains date and time for each command - only for current session - add to ~/.bash_profile to make it permanent)
 
 tar cvf foo.tar bar/ (creates gzipped tar archive with name foo.tar from the folder bar)
 tar xvf foo.tar (extracts gzipped tar in current directory)
@@ -78,6 +89,7 @@ sftp root@hostname.example.com  (SFTP connection to remote server)
 get Foo.txt (with connected with sftp gets the file Foo.txt from remote server)
 
 sudo su (login as super user)
+su - foobar (login as foobar user - but spawn shell in login mode - e.g. bash reads ~/.bash_profile in login mode and ~/.bashrc in nonlogin mode)
 
 df -ahT /foo/bar/ (displays file system disk usage and partition types; if path is ommited all mounted disk usage is displayed)
 mount (used for mounting filesystem or displaying the mounted filesystem if used without options)
@@ -114,8 +126,8 @@ Arrow up / down (displays the previously used commands)
 Shift+Insert (paste)
 
 apt-get install packageNameFoo (installs a packageNameFoo program from the default repository)
-apt-get update (updates versions of the apps)
-apt-get purge packageNameFoo (deletes packageNameFoo program)
+apt-get update (resynchronizes package index from their sources - updates versions of the apps in the APT)
+apt-get purge packageNameFoo (remove packageNameFoo program and clear configuration files for the package)
 
 apt-cache show packageNameFoo (displays detailed info about current and installed package)
 apt-cache policy packageNameFoo (displays only verision info about current and installed package)
@@ -150,6 +162,7 @@ apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump e
 
 
 which foo (locate a command foo that will be executed - useful for debugging PATH problems)
+whereis foo (locate the binary, source, and manual page files for a command)
 command -v foo (write a string to standard output that indicates the pathname or command that will be used by the shell - can be used in bash script instead of which to find what file will be executed in curr. environment)
 
 whereis (locate binary, source and man pages for command)
@@ -207,3 +220,16 @@ facter (collects and displays facts about system. Installed with puppet)
 
 !!!!!!!!!!!!!!!!!!!!!
 etckeeper
+!!!!!!!!!!!!!!!!!!!!!
+
+!!!!!!!!!!!!!!!!!!!!!
+shell scripting
+!!!!!!!!!!!!!!!!!!!!!
+
+$1 (1st command line argument)
+$n (n-th command line argument)
+$0 (name by which the script has been invoked)
+$# (number of arguments supplied, without $0)
+$* (all arguments at once, but without $0)
+
+local foo (defines local var in the function)
