@@ -26,7 +26,9 @@ fc (processes command line history - open and editor to modify and reexecute pre
 read (read one line from standard input - usefull when writing shell scripts and prompting user for info)
 
 sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
-sudo update-rc.d foobar start 80 2 3 4 5 . stop 20 S 1 6 (foobar service will be started at sequence 20 in levels 2-5 and stoped at sequence 20 in level S, 1 and 6)
+sudo update-rc.d foobar start 80 2 3 4 5 . stop 20 S 1 6 (foobar service will be started at sequence 20 in levels 2-5 and stoped at sequence 20 in level S, 1 and 6. On debian 6 if using dependency based boot "insserv" scripts must have LSB headers)
+
+
 
 w (who is logged and what they are doing)
 last (show listing of last logged in users)
