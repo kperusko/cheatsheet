@@ -23,8 +23,6 @@ history -c (deletes shell history from RAM)
 export HISTTIMEFORMAT="[%F] [%T] " (set the HISTTIMEFORMAT variable so that the history contains date and time for each command - only for current session - add to ~/.bash_profile to make it permanent)
 fc (processes command line history - open and editor to modify and reexecute previously entered commands)
 
-read (read one line from standard input - usefull when writing shell scripts and prompting user for info)
-
 sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
 sudo update-rc.d foobar start 80 2 3 4 5 . stop 20 S 1 6 (foobar service will be started at sequence 20 in levels 2-5 and stoped at sequence 20 in level S, 1 and 6. On debian 6 if using dependency based boot "insserv" scripts must have LSB headers)
 
@@ -162,6 +160,7 @@ apport /foo/bar/crash.report - opens apport crash log (check /var/crash or /var/
 gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file and you can see backtrace with "bt" or "bt full")
 apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump extracted from the report)
 
+sudo strace -p 123 (trace system calls and signals for process with PID 123 - usefull when debugging processes. Use -f to trace forked processes and -e to see only file activity - usefull when tracking evasive config files)
 
 which foo (locate a command foo that will be executed - useful for debugging PATH problems)
 whereis foo (locate the binary, source, and manual page files for a command)
@@ -235,3 +234,6 @@ $# (number of arguments supplied, without $0)
 $* (all arguments at once, but without $0)
 
 local foo (defines local var in the function)
+
+read (read one line from standard input - usefull when writing shell scripts and prompting user for info)
+
