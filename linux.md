@@ -26,8 +26,6 @@ fc (processes command line history - open and editor to modify and reexecute pre
 sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
 sudo update-rc.d foobar start 80 2 3 4 5 . stop 20 S 1 6 (foobar service will be started at sequence 20 in levels 2-5 and stoped at sequence 20 in level S, 1 and 6. On debian 6 if using dependency based boot "insserv" scripts must have LSB headers)
 
-
-
 w (who is logged and what they are doing)
 last (show listing of last logged in users)
 lastlog (reports the most recent login of all users or of a given user)
@@ -52,6 +50,11 @@ lsof (display all open files)
 telinit (change system run level)
 cat /proc/cpuinfo (display info about cpu)
 cat /proc/meminfo (display info about memory)
+
+sudo strace -p 123 (trace system calls and signals for process with PID 123 - usefull when debugging processes. Use -f to trace forked processes and -e to see only file activity - usefull when tracking evasive config files)
+
+fuser (identify processes using files or sockets)
+sudo fuser -4 -v -n tcp 80 (find all processes using TCP port 80, -v verbose, -4 - IPv4)
 
 stat foo.txt (display file status - similar to properties on win systems - displays access/modify/change dates and other useful info for the file)
 file foo.txt (detect file type; -bi will detect encoding; try to use chardet if cannot detect charset properly)
@@ -159,11 +162,6 @@ find /foo/bar/ -name "foobar*.pdf" -print0 | xargs -0 -I {} cp {} /tmp (find all
 apport /foo/bar/crash.report - opens apport crash log (check /var/crash or /var/log/apport.log usually contains additinal info about crash reports and coredumps)
 gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file and you can see backtrace with "bt" or "bt full")
 apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump extracted from the report)
-
-sudo strace -p 123 (trace system calls and signals for process with PID 123 - usefull when debugging processes. Use -f to trace forked processes and -e to see only file activity - usefull when tracking evasive config files)
-
-fuser (identify processes using files or sockets)
-sudo fuser -4 -v -n tcp 80 (find all processes using TCP port 80, -v verbose, -4 - IPv4)
 
 which foo (locate a command foo that will be executed - useful for debugging PATH problems)
 whereis foo (locate the binary, source, and manual page files for a command)
