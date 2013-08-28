@@ -109,6 +109,8 @@ chown administrator foo (set admnistrator user as owner of the file / folder foo
 chgrp administrator foo (set admnistrator user as group of the file / folder foo)
 umask 022 (default umask; sets the default permissions on the file when created. The mask is reversed from chmod - eg. umask 777 will mean that the new file will not have ---/000 permission or umask 000 that the new file will have rwx/777 permission)
 
+setfacl/getfacl (get/set file ACL - more advanced version of default file permissions)
+
 touch foo.bar (create file with name foo.bar)
 echo "foobar" > foo.bar (creates file foo.bar if does not exists or overwrites existing file and writes foobar inside)
 echo "foobar" >> foo.bar (creates file foo.bar if does not exists and writes foobar inside, appends to the file if file already exits)
