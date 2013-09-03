@@ -33,6 +33,7 @@ whoami (shows your username)
 id (prints info about user: real / effective userID, groupID etc.)
 
 free -m (display amount of free and used memory in the system -m in MB)
+vmstat (display information about processes, memory, paging, block IO, traps, disks and cpu activity)
 dmidecode (displays DMI (SMBIOS) - all system information)
 iostat (I/O statistics for devices and partitions)
 iotop (top-like I/O monitor)
