@@ -204,6 +204,9 @@ git svn dcommit (commit to svn repository)
 git checkout foobar (switch to branch foobar)
 git clone -b foo file:///root/bar (clone branch foo from a local file)
 
+git diff origin/master HEAD (diff the commited local changes with master branch on origin repo)
+git rebase -i origin/master (interactive rebase to "squash" the commited changes on your local repo - WARNING - this changes history so use it only when you didn't push your changes to other repos)
+
 !!!!!!!!!!!!!!!!!!!!!
 HG
 !!!!!!!!!!!!!!!!!!!!!
