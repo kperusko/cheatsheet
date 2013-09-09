@@ -42,6 +42,9 @@ ifstat (ethernet  traffic monitor)
 apachetop -f /var/log/apache2/access.log (displays real-time web server statistics)
 dstat (generating system resources - usefull monitor tool)
 
+dig -x 176.9.134.62 (DNS lookup - reverse lookup of IP adress)
+route (show / manipulate the IP routing table - also displays gateway)
+
 time foobar (runs foobar and summarizes system resource usage)
 
 sysctl -a (display all kernel parameters at runtime)
@@ -105,7 +108,6 @@ cd ~ (go to home directory)
 cd - (returns to the previos location)
 ls -lah (list directory contents with details)
 du -sh (display total folder size)
-dig -x 176.9.134.62 (DNS lookup - reverse lookup of IP adress)
 mv bla.x foo.x (move - move file to the directory or if the directory is same rename the file)
 chmod 777 -R Foo (add all permissions to the folder Foo recursively)
 chown administrator foo (set admnistrator user as owner of the file / folder foo)
