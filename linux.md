@@ -174,9 +174,10 @@ which foo (locate a command foo that will be executed - useful for debugging PAT
 whereis foo (locate the binary, source, and manual page files for a command)
 command -v foo (write a string to standard output that indicates the pathname or command that will be used by the shell - can be used in bash script instead of which to find what file will be executed in curr. environment)
 
-whereis (locate binary, source and man pages for command)
-
 cat foobar 2>&1 | tee bar.txt (redirect stderr to stdout, write it to the bar.txt file and display it to the screen)
+
+bc -l (invokes command line calculator; -l is preloading math library to support sin, cos, exponent etc. functions)
+cal -3 (displays command line calendar for 3 months)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 MySQL
