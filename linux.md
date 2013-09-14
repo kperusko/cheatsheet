@@ -1,12 +1,17 @@
-pkill -f procnamex (kills all processes with name procnamex)
-ps aux | grep procnamex (show all processes with name procnamex)
-ps -p $$ (displays the current shell that is used)
-pstree -a (display a tree of processes with command line arguments)
-kill -9 12030 (kills process with PID 12030. -9 sends KILL signal to process so use it only when absolutely necessary)
-
 man -k foo (search foo in man pages descriptions)
 man -wK foo (search foo in man pages bodies)
 whatis (displays short descript from the manual)
+which foo (locate a command foo that will be executed - useful for debugging PATH problems)
+whereis foo (locate the binary, source, and manual page files for a command)
+command -v foo (write a string to standard output that indicates the pathname or command that will be used by the shell - can be used in bash script instead of which to find what file will be executed in curr. environment)
+
+history (show history of all commands in shell) - bash history is written in the file ~/.bash_history
+history -c (deletes shell history from RAM)
+export HISTTIMEFORMAT="[%F] [%T] " (set the HISTTIMEFORMAT variable so that the history contains date and time for each command - only for current session - add to ~/.bash_profile to make it permanent)
+fc (processes command line history - open and editor to modify and reexecute previously entered commands)
+
+locate foobar (find files by name - updatedb must be started, usually by daily cron or manually)
+find /foo/bar/ -name "foobar*.pdf" -print0 | xargs -0 -I {} cp {} /tmp (find all pdf files in /foo/bar folder that are named foobar* and copy them to /tmp folder
 
 $? (reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function)
 $$ (current process PID)
@@ -18,13 +23,11 @@ $! (PID of the last backgrounded process)
 !-5 (execute current -5 line in history)
 !foo (execute the last foo command in history)
 
-history (show history of all commands in shell) - bash history is written in the file ~/.bash_history
-history -c (deletes shell history from RAM)
-export HISTTIMEFORMAT="[%F] [%T] " (set the HISTTIMEFORMAT variable so that the history contains date and time for each command - only for current session - add to ~/.bash_profile to make it permanent)
-fc (processes command line history - open and editor to modify and reexecute previously entered commands)
-
-sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
-sudo update-rc.d foobar start 80 2 3 4 5 . stop 20 S 1 6 (foobar service will be started at sequence 20 in levels 2-5 and stoped at sequence 20 in level S, 1 and 6. On debian 6 if using dependency based boot "insserv" scripts must have LSB headers)
+ps aux | grep procnamex (show all processes with name procnamex)
+ps -p $$ (displays the current shell that is used)
+pstree -a (display a tree of processes with command line arguments)
+kill -9 12030 (kills process with PID 12030. -9 sends KILL signal to process so use it only when absolutely necessary)
+pkill -f procnamex (kills all processes with name procnamex)
 
 w (who is logged and what they are doing)
 last (show listing of last logged in users)
@@ -32,48 +35,114 @@ lastlog (reports the most recent login of all users or of a given user)
 whoami (shows your username)
 id (prints info about user: real / effective userID, groupID etc.)
 
+top (show linux tasks / processes)
+htop (proces monitor)
+atop (resource monitor)
+dstat (generating system resources - usefull monitor tool)
 free -m (display amount of free and used memory in the system -m in MB)
 vmstat (display information about processes, memory, paging, block IO, traps, disks and cpu activity)
-dmidecode (displays DMI (SMBIOS) - all system information)
 iostat (I/O statistics for devices and partitions)
 iotop (top-like I/O monitor)
 netstat (network statistics tool usefull in analyzing network connections, routing tables, network interfaces)
 ifstat (ethernet  traffic monitor)
 apachetop -f /var/log/apache2/access.log (displays real-time web server statistics)
-dstat (generating system resources - usefull monitor tool)
+
+du -sh (display total folder size)
+df -ahT /foo/bar/ (displays file system disk usage and partition types; if path is ommited all mounted disk usage is displayed)
+mount (used for mounting filesystem or displaying the mounted filesystem if used without options)
+
+lsb_release -a (displays distribution version information)
+uname -a (prints more general system information)
+ulimit (get and sets user limits)
+dmidecode (displays DMI (SMBIOS) - all system information)
+sysctl -a (display all kernel parameters at runtime)
+cat /proc/cpuinfo (display info about cpu)
+cat /proc/meminfo (display info about memory)
+cat /proc/<pid>/limits (displays ulimits for the process with process id <pid>)
 
 dig -x 176.9.134.62 (DNS lookup - reverse lookup of IP adress)
 route (show / manipulate the IP routing table - also displays gateway)
-
-time foobar (runs foobar and summarizes system resource usage)
-
-sysctl -a (display all kernel parameters at runtime)
-lsb_release -a (displays distribution version information)
-uname -a (prints more general system information)
-lsof (display all open files)
-telinit (change system run level)
-cat /proc/cpuinfo (display info about cpu)
-cat /proc/meminfo (display info about memory)
-
-sudo strace -p 123 (trace system calls and signals for process with PID 123 - usefull when debugging processes. Use -f to trace forked processes and -e to see only file activity - usefull when tracking evasive config files)
-
-fuser (identify processes using files or sockets)
-sudo fuser -4 -v -n tcp 80 (find all processes using TCP port 80, -v verbose, -4 - IPv4)
 
 stat foo.txt (display file status - similar to properties on win systems - displays access/modify/change dates and other useful info for the file)
 file foo.txt (detect file type; -bi will detect encoding; try to use chardet if cannot detect charset properly)
 chardet foo.txt (universal character encoding detector)
 
-top (show linux tasks / processes)
-htop (proces monitor)
-atop (resource monitor)
+lsof (display all open files)
+fuser (identify processes using files or sockets)
+sudo fuser -4 -v -n tcp 80 (find all processes using TCP port 80, -v verbose, -4 - IPv4)
 
-tar cvf foo.tar bar/ (creates gzipped tar archive with name foo.tar from the folder bar)
-tar xvf foo.tar (extracts gzipped tar in current directory)
+sudo strace -p 123 (trace system calls and signals for process with PID 123 - usefull when debugging processes. Use -f to trace forked processes and -e to see only file activity - usefull when tracking evasive config files)
+telinit (change system run level)
+
+sudo su (login as super user)
+su - foobar (login as foobar user - but spawn shell in login mode - e.g. bash reads ~/.bash_profile in login mode and ~/.bashrc in nonlogin mode)
+
+vipw (edits /etc/passwd file; -s to edit /etc/shadow)
+vigr (edits /etc/group file; -s to edit /etc/gshadow)
+chsh -s /bin/bash foobar (change login shell for the foobar user to bash. Normal users can change only their shell, root can change any account)
+
+chmod 777 -R Foo (add all permissions to the folder Foo recursively)
+chown administrator foo (set admnistrator user as owner of the file / folder foo)
+chgrp administrator foo (set admnistrator user as group of the file / folder foo)
+setfacl/getfacl (get/set file ACL - more advanced version of default file permissions)
+umask 022 (default umask; sets the default permissions on the file when created. The mask is reversed from chmod - eg. umask 777 will mean that the new file will not have ---/000 permission or umask 000 that the new file will have rwx/777 permission)
+
+head -100 foo (output the first 100 lines of the file foo)
+head -n-50 foo (output all lines from file but skip last 50 lines)
+tail -f foo (output appended data as the file foo grows - very useful when monitoring log files)
+tail -100 foo (output last 100 lines)
+tail -n+50 foo (output all lines from file but skip first 50 lines)
+cat foo (output the entire file in the standard output)
+
+yes | nl | head -100 > foobar.txt (creates foobar.txt file that contains 100 lines, each line contains line numer and "yes" string)
+
+touch foo.bar (create file with name foo.bar)
+echo "foobar" > foo.bar (creates file foo.bar if does not exists or overwrites existing file and writes foobar inside)
+echo "foobar" >> foo.bar (creates file foo.bar if does not exists and writes foobar inside, appends to the file if file already exits)
+tee (read from standard input and write to standard output and files)
+echo "bla" | sudo tee /etc/bla (usefull when trying to echo a string to a file for which you need sudo)
+cat foobar 2>&1 | tee bar.txt (redirect stderr to stdout, write it to the bar.txt file and display it to the screen)
+
+sh deploy.sh *** OR *** ./deploy.sh (start SH script - to start a script with ./deploy.sh the execute (+X) permission must be set on thescript)
+./deploy.sh & (starts the script as separate process - the terminal can be turned off and the process will still be running)
+
+time foobar (runs foobar, displays time needed for running the command and summarizes system resource usage)
 
 sed -i "s/foo/bar/g" bazfile (global inplace search and replace in files - replaces foo with bar in file bazfile)
 
------------------
+tar cvfz foo.tar bar/ (creates gzipped tar archive with name foo.tar from the folder bar)
+tar xvfz foo.tar (extracts gzipped tar in current directory)
+
+bc -l (invokes command line calculator; -l is preloading math library to support sin, cos, exponent etc. functions)
+cal -3 (displays command line calendar for 3 months)
+
+date (print system time and date)
+tzselect (debian timezone select)
+
+sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
+sudo update-rc.d foobar start 80 2 3 4 5 . stop 20 S 1 6 (foobar service will be started at sequence 20 in levels 2-5 and stoped at sequence 20 in level S, 1 and 6. On debian 6 if using dependency based boot "insserv" scripts must have LSB headers)
+
+apport /foo/bar/crash.report - opens apport crash log (check /var/crash or /var/log/apport.log usually contains additinal info about crash reports and coredumps)
+gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file and you can see backtrace with "bt" or "bt full")
+apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump extracted from the report)
+
+sudo service rabbitmq-server start (starts RabbitMQ server)
+sudo rabbitmqctl list_queues (shows queue list)
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+APT (Advance Package Tool)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+apt-get install packageNameFoo (installs a packageNameFoo program from the default repository)
+apt-get update (resynchronizes package index from their sources - updates versions of the apps in the APT)
+apt-get purge packageNameFoo (remove packageNameFoo program and clear configuration files for the package)
+
+apt-cache show packageNameFoo (displays detailed info about current and installed package)
+apt-cache policy packageNameFoo (displays only verision info about current and installed package)
+apt-cache search packageNameFoo (performs full text search on all available packages in the APT cache)
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+SSH
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ssh root@hostname.example.com -p 12345 *** OR *** ssh hostaname.example.com -l root -p 12345 (ssh connection on server hostaname.example.com with username root on port 12345)
 ssh -L 1234:localhost:2345 user@hostname.example.com (port forwarding - useful when you want to connect on server hostname.example.com on port 2345, from your machine on port 1234 - usefull to connect to restricted services via ssh)
 ssh -D 9999 -C foo@bar.example.com (-D application-level port forwarding - usefull when wanting to connect an application through proxy on another server - e.g. connecting with Firefox remotely to an server as it was connected locally)
@@ -88,96 +157,41 @@ Host foobar
 	
 ssh -f -N foobar (open local port fowarding: -f execute in background, -N do not execute remote command)
 
-foobar can be anyname you like
-LocalForward/IdentityFile is optional
------------------
+foobar can be any string you like to represent server name
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+SFTP - secure file transfer program
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 sftp root@hostname.example.com  (SFTP connection to remote server)
-get Foo.txt (with connected with sftp gets the file Foo.txt from remote server)
+get foo.txt (when connected with sftp download the file Foo.txt from remote server)
+put foo.txt (upload the foo.txt to the remote server from your local directory)
+cd (change directory on remote server)
+lcd (change directory on local server)
+mkdir (mkdir on remote server)
+lmkdir (mkdir on local server)
+ls (list directory contents on remote server)
+lls (list directory contents on local server)
 
-sudo su (login as super user)
-su - foobar (login as foobar user - but spawn shell in login mode - e.g. bash reads ~/.bash_profile in login mode and ~/.bashrc in nonlogin mode)
-
-chsh -s /bin/bash foobar (change login shell for the foobar user to bash. Normal users can change only their shell, root can change any account)
-
-df -ahT /foo/bar/ (displays file system disk usage and partition types; if path is ommited all mounted disk usage is displayed)
-mount (used for mounting filesystem or displaying the mounted filesystem if used without options)
-
-cd .. (go to parent  directory)
-cd ~ (go to home directory)
-cd - (returns to the previos location)
-ls -lah (list directory contents with details)
-du -sh (display total folder size)
-mv bla.x foo.x (move - move file to the directory or if the directory is same rename the file)
-chmod 777 -R Foo (add all permissions to the folder Foo recursively)
-chown administrator foo (set admnistrator user as owner of the file / folder foo)
-chgrp administrator foo (set admnistrator user as group of the file / folder foo)
-umask 022 (default umask; sets the default permissions on the file when created. The mask is reversed from chmod - eg. umask 777 will mean that the new file will not have ---/000 permission or umask 000 that the new file will have rwx/777 permission)
-
-setfacl/getfacl (get/set file ACL - more advanced version of default file permissions)
-
-touch foo.bar (create file with name foo.bar)
-echo "foobar" > foo.bar (creates file foo.bar if does not exists or overwrites existing file and writes foobar inside)
-echo "foobar" >> foo.bar (creates file foo.bar if does not exists and writes foobar inside, appends to the file if file already exits)
-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+VIM
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 INSERT (keyboard button) enables editing the file
 ESCAPE (keyboard button) enables entering the commands in editor
 :q! (command for force exiting without changes)
 :wq (save changes and exit)
 :$ (go to the end of file)
 / search in file (go to next result with n)
+:100 (go to line number 100)
+:u (undo)
 
-Ctrl+C kills current process 
-sh deploy.sh *** OR *** ./deploy.sh (start script)
-./deploy.sh & (starts the script as separate process - the terminal can be turned off and the process will still be running)
-
-Ctrl+L (clear the terminal screen)
-Arrow up / down (displays the previously used commands)
-Shift+Insert (paste)
-
-apt-get install packageNameFoo (installs a packageNameFoo program from the default repository)
-apt-get update (resynchronizes package index from their sources - updates versions of the apps in the APT)
-apt-get purge packageNameFoo (remove packageNameFoo program and clear configuration files for the package)
-
-apt-cache show packageNameFoo (displays detailed info about current and installed package)
-apt-cache policy packageNameFoo (displays only verision info about current and installed package)
-
-sudo service rabbitmq-server start (starts RabbitMQ server)
-sudo rabbitmqctl list_queues (shows queue list)
-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+APACHE2
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 sudo service apache2 start|graceful|graceful-stop|restart|stop or /etc/init.d/apache2 start|graceful|graceful-stop|restart|stop (graceful restarts apache2 gracefuly)
 sudo a2ensite imesitea.com (enable virtual host site in apache. mod_rewrite module must be installed)
 sudo a2dissite imesitea.com (disable virtual host site in apache) 
 sudo a2enmod deflate (rewrite - omogućavanje apache2 modula deflate / rewrite )
 sudo a2dismod
-
-head -100 foo (output the first 100 lines of the file foo)
-head -n-50 foo (output all lines from file but skip last 50 lines)
-tail -f foo (output appended data as the file foo grows - very useful when monitoring log files)
-tail -100 foo (output last 100 lines)
-tail -n+50 foo (output all lines from file but skip first 50 lines)
-cat foo (output the entire file in the standard output)
-
-yes | nl | head -100 > foobar.txt (creates foobar.txt file that contains 100 lines, each line contains line numer and "yes" string)
-
-tzselect (debian timezone select)
-
-cat /proc/<pid>/limits (displays ulimits for the process with process id <pid>)
-
-find /foo/bar/ -name "foobar*.pdf" -print0 | xargs -0 -I {} cp {} /tmp (find all pdf files in /foo/bar folder that are named foobar* and copy them to /tmp folder
-
-apport /foo/bar/crash.report - opens apport crash log (check /var/crash or /var/log/apport.log usually contains additinal info about crash reports and coredumps)
-gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file and you can see backtrace with "bt" or "bt full")
-apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump extracted from the report)
-
-which foo (locate a command foo that will be executed - useful for debugging PATH problems)
-whereis foo (locate the binary, source, and manual page files for a command)
-command -v foo (write a string to standard output that indicates the pathname or command that will be used by the shell - can be used in bash script instead of which to find what file will be executed in curr. environment)
-
-cat foobar 2>&1 | tee bar.txt (redirect stderr to stdout, write it to the bar.txt file and display it to the screen)
-
-bc -l (invokes command line calculator; -l is preloading math library to support sin, cos, exponent etc. functions)
-cal -3 (displays command line calendar for 3 months)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 MySQL
@@ -185,21 +199,20 @@ MySQL
 mysql -uroot -ppassword
 mysqldump -uroot -ppassword --single-transaction --routines --triggers Foo > dumpfile.sql (safest way to dump database)
 
-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 Mongo
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 use admin
 db.runCommand({getCmdLineOpts:1}); ## displays options with which the mongod process was started (Command line parameters + parsed parameters from the config file)
 
 mongodump -d dbNameFoo -o folderNameBar
 mongorestore folderFoo
+mongotop
+mongostat 
 
-!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 GIT
-!!!!!!!!!!!!!!!!!!!!!!
-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 git init --bare (init empty git repository that will be a remote repo)
 git remote add foo ssh://root@example.com/~/bar (add remote repository named foo on server example.com in folder ~/bar )
 git push foo bar (push to remote repository foo branch bar)
@@ -212,35 +225,27 @@ git rebase -i origin/master (interactive rebase to "squash" the commited changes
 git reset --soft HEAD~1 (delete the last commit - WARNING -changes history)
 git clean -f (delete untracked files from repo; -d is for directories)
 
-!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 HG
-!!!!!!!!!!!!!!!!!!!!!
-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 hg id (displays summary of the current state of the repository - useful for detecting revision of the working folder)
 hg status --rev .:tip (dry run for update - compare the pulled changes with current status of the working directory)
 
-!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 SVN
-!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 svn update --set-depth exclude foobar (excludes folder from svn update - usefull when do not want to update large folders e.g. containing db data files)
 svn update --set-depth infinity (restores the excluded folders so that they can be updated)
 
-!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 PUPPET
-!!!!!!!!!!!!!!!!!!!!!
-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 puppet describe -s (Prints help about Puppet resource types, providers, and metaparameters)
 facter (collects and displays facts about system. Installed with puppet)
 
-
-!!!!!!!!!!!!!!!!!!!!!
-etckeeper
-!!!!!!!!!!!!!!!!!!!!!
-
-!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 shell scripting
-!!!!!!!!!!!!!!!!!!!!!
-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 $1 (1st command line argument)
 $n (n-th command line argument)
 $0 (name by which the script has been invoked)
@@ -248,6 +253,17 @@ $# (number of arguments supplied, without $0)
 $* (all arguments at once, but without $0)
 
 local foo (defines local var in the function)
-
 read (read one line from standard input - usefull when writing shell scripts and prompting user for info)
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Terminal shortcuts
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Ctrl+C (kills current process by sending interrupt signal: INT)
+Ctrl+D (sends the quit signal to current process: QUIT)
+Ctrl+L (clear the terminal screen)
+Arrow up / down (displays the previously used commands)
+Shift+Insert (paste)
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+etckeeper
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
