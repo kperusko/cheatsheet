@@ -195,6 +195,7 @@ sudo a2ensite imesitea.com (enable virtual host site in apache. mod_rewrite modu
 sudo a2dissite imesitea.com (disable virtual host site in apache) 
 sudo a2enmod deflate (rewrite - omogućavanje apache2 modula deflate / rewrite )
 sudo a2dismod
+apache2ctl -M (list all enabled modules for apache)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 MySQL
