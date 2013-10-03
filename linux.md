@@ -59,6 +59,8 @@ sysctl -a (display all kernel parameters at runtime)
 cat /proc/cpuinfo (display info about cpu)
 cat /proc/meminfo (display info about memory)
 cat /proc/<pid>/limits (displays ulimits for the process with process id <pid>)
+cat /proc/mdstat (display status of RAID array)
+mdadm --detail /dev/md0 (manage MD devices aka Linux Software RAID; --detail displays detail of the md0 device)
 
 dig -x 176.9.134.62 (DNS lookup - reverse lookup of IP adress)
 route (show / manipulate the IP routing table - also displays gateway)
