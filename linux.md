@@ -178,6 +178,13 @@ ls (list directory contents on remote server)
 lls (list directory contents on local server)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
+EMACS
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+M-x mark-word (M-@; marks current word from point to the end of the word)
+M-x select-text-in-quote (M-*; selects text in quotes, parenthesis etc.)
+M-x reverse-region (reverses order of lines in the regions)
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 VIM
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 INSERT (keyboard button) enables editing the file
@@ -208,7 +215,7 @@ mysqldump -uroot -ppassword --single-transaction --routines --triggers Foo > dum
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 Mongo
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-use admin
+quse admin
 db.runCommand({getCmdLineOpts:1}); ## displays options with which the mongod process was started (Command line parameters + parsed parameters from the config file)
 
 mongodump -d dbNameFoo -o folderNameBar
