@@ -126,6 +126,7 @@ tzselect (debian timezone select)
 
 sudo update-rc.d foobar defaults (installs the init script foobar for all run levels - foobar script must be in the /etc/init.d/. This will enable to call service foobar start)
 sudo update-rc.d foobar start 80 2 3 4 5 . stop 20 S 1 6 (foobar service will be started at sequence 20 in levels 2-5 and stoped at sequence 20 in level S, 1 and 6. On debian 6 if using dependency based boot "insserv" scripts must have LSB headers)
+initctl list (lists all upstart jobs - to disable upstart job foo add file /etc/init/foo.override)
 
 apport /foo/bar/crash.report - opens apport crash log (check /var/crash or /var/log/apport.log usually contains additinal info about crash reports and coredumps)
 gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file and you can see backtrace with "bt" or "bt full")
