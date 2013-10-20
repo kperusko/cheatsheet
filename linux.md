@@ -239,6 +239,10 @@ git rebase -i origin/master (interactive rebase to "squash" the commited changes
 git reset --soft HEAD~1 (delete the last commit - WARNING -changes history)
 git clean -f (delete untracked files from repo; -d is for directories)
 
+git config --global user.email "email@example.com" (set global config e-mail for all git repos)
+git config --global user.name "Name" (set global config name for all git repos)
+git config --global credential.helper "cache --timeout=3600" (enable password caching for 1 hour; default is 15 min)
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 HG
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
