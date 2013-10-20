@@ -145,6 +145,7 @@ apt-get purge packageNameFoo (remove packageNameFoo program and clear configurat
 apt-cache show packageNameFoo (displays detailed info about current and installed package)
 apt-cache policy packageNameFoo (displays only verision info about current and installed package)
 apt-cache search packageNameFoo (performs full text search on all available packages in the APT cache)
+apt-cache rdepends packageNameFoo (displays all packages that are dependen on the packageNameFoo)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 SSH
