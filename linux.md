@@ -145,6 +145,7 @@ apt-get purge packageNameFoo (remove packageNameFoo program and clear configurat
 apt-cache show packageNameFoo (displays detailed info about current and installed package)
 apt-cache policy packageNameFoo (displays only verision info about current and installed package)
 apt-cache search packageNameFoo (performs full text search on all available packages in the APT cache)
+apt-cache rdepends packageNameFoo (displays all packages that are dependen on the packageNameFoo)
 
 dpkg-query -L packageNameFoo (debian package manager: list files installed from package)
 
@@ -240,6 +241,10 @@ git diff origin/master HEAD (diff the commited local changes with master branch 
 git rebase -i origin/master (interactive rebase to "squash" the commited changes on your local repo - WARNING - this changes history so use it only when you didn't push your changes to other repos)
 git reset --soft HEAD~1 (delete the last commit - WARNING -changes history)
 git clean -f (delete untracked files from repo; -d is for directories)
+
+git config --global user.email "email@example.com" (set global config e-mail for all git repos)
+git config --global user.name "Name" (set global config name for all git repos)
+git config --global credential.helper "cache --timeout=3600" (enable password caching for 1 hour; default is 15 min)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 HG
