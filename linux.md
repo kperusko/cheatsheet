@@ -133,7 +133,7 @@ gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file an
 apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump extracted from the report)
 
 sudo service rabbitmq-server start (starts RabbitMQ server)
-sudo rabbitmqctl list_queues (shows queue list)
+sudo rabbitmqctl list_queues (shows queue list)		
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 APT (Advance Package Tool)
@@ -145,6 +145,8 @@ apt-get purge packageNameFoo (remove packageNameFoo program and clear configurat
 apt-cache show packageNameFoo (displays detailed info about current and installed package)
 apt-cache policy packageNameFoo (displays only verision info about current and installed package)
 apt-cache search packageNameFoo (performs full text search on all available packages in the APT cache)
+
+dpkg-query -L packageNameFoo (debian package manager: list files installed from package)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 SSH
