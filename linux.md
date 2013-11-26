@@ -210,6 +210,8 @@ sudo a2enmod deflate (rewrite - omogućavanje apache2 modula deflate / rewrite )
 sudo a2dismod
 apache2ctl -M (list all enabled modules for apache)
 
+sudo htpasswd -c /path/to/some/file/foo bar (creates a new file bar at specified path with password for user bar. This file can then be used with AuthBasicProvider file and apache auth mod).
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 MySQL
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
