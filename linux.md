@@ -186,6 +186,10 @@ EMACS
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 M-x mark-word (M-@; marks current word from point to the end of the word)
 M-x select-text-in-quote (M-*; selects text in quotes, parenthesis etc.)
+
+C-x C-r (open list of recent files)
+C-c right or C-c left (undo/redo window configuration)
+
 M-x reverse-region (reverses order of lines in the regions)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -210,7 +214,7 @@ sudo a2enmod deflate (rewrite - omogućavanje apache2 modula deflate / rewrite )
 sudo a2dismod
 apache2ctl -M (list all enabled modules for apache)
 
-sudo htpasswd -c /path/to/some/file/foo bar (creates a new file bar at specified path with password for user bar. This file can then be used with AuthBasicProvider file and apache auth mod).
+sudo htpasswd -cs /path/to/some/file/foo bar (creates a new file bar at specified path with password for user bar. This file can then be used with AuthBasicProvider file and apache auth mod. -s is encrypting with SHA encryption for password. Standard settings will encrypt only first 8 chars).
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 MySQL
