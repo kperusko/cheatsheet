@@ -189,6 +189,8 @@ M-x select-text-in-quote (M-*; selects text in quotes, parenthesis etc.)
 C-x C-r (open list of recent files - custom shortcut)
 C-c ; (comment whole block - custom shortcut)
 
+C-x C-f /ssh:username@example.com:/ (opens a file over ssh on example.com server)
+
 C-c right or C-c left (undo/redo window configuration)
 M-x reverse-region (reverses order of lines in the regions)
 
