@@ -41,10 +41,12 @@ atop (resource monitor)
 dstat (generating system resources - usefull monitor tool)
 free -m (display amount of free and used memory in the system -m in MB)
 vmstat (display information about processes, memory, paging, block IO, traps, disks and cpu activity)
-iostat (I/O statistics for devices and partitions)
+iostat -d 2 (I/O statistics for devices and partitions)
 iotop (top-like I/O monitor)
 netstat (network statistics tool usefull in analyzing network connections, routing tables, network interfaces)
-ifstat (ethernet  traffic monitor)
+ss (utility for investigating sockets and services alternative to netstat)
+ifstat (ethernet traffic monitor)
+iftop (network traffic monitor - bandwith usage by on interface by host)
 apachetop -f /var/log/apache2/access.log (displays real-time web server statistics)
 
 du -sh (display total folder size)
@@ -109,9 +111,12 @@ echo "bla" | sudo tee /etc/bla (usefull when trying to echo a string to a file f
 cat foobar 2>&1 | tee bar.txt (redirect stderr to stdout, write it to the bar.txt file and display it to the screen)
 
 sh deploy.sh *** OR *** ./deploy.sh (start SH script - to start a script with ./deploy.sh the execute (+X) permission must be set on thescript)
-./deploy.sh & (starts the script as separate process - the terminal can be turned off and the process will still be running)
+./deploy.sh & (starts the script as a asynchronous job)
+sh deploy.sh &! (only for zsh - starts the script as a asynchronous job and disown the process - the disowned process will not be suspended automatically)
 
 time foobar (runs foobar, displays time needed for running the command and summarizes system resource usage)
+
+diff -y foo bar (compares two files side-by-side; also works with directories)
 
 sed -i "s/foo/bar/g" bazfile (global inplace search and replace in files - replaces foo with bar in file bazfile)
 
@@ -181,11 +186,21 @@ lmkdir (mkdir on local server)
 ls (list directory contents on remote server)
 lls (list directory contents on local server)
 
+!!!!!!!!
+IPTABLES
+!!!!!!!!
+sudo iptables -A INPUT -s 199.1.1.1 -p tcp --destination-port 27017 -j ACCEPT (allow incoming connections on TCP protocol going to local port 27017 from IP 199.1.1.1)
+sudo iptables -A INPUT -p tcp --destination-port 27017 -j DROP (drop all incoming TCP connections going to port 27017, that are not whitelisted above)
+
+sudo iptables -A OUTPUT -d 199.1.1.1 -p tcp --source-port 27017 -j ACCEPT (allow outgoing connections on TCP protocol going from local port 27017 to IP 199.1.1.1)
+sudo iptables -A OUTPUT -p tcp --source-port 27017 -j DROP (drop all outgoing TCP connections from port 27017, that are not whitelisted above)
+
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 EMACS
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 M-x mark-word (M-@; marks current word from point to the end of the word)
-M-x select-text-in-quote (M-*; selects text in quotes, parenthesis etc.)
+M-x select-text-in-quote (M-*; selects text in quotes, parenthesis etc. - custom shortcut)
 C-x C-r (open list of recent files - custom shortcut)
 C-c ; (comment whole block - custom shortcut)
 
@@ -205,6 +220,8 @@ ESCAPE (keyboard button) enables entering the commands in editor
 / search in file (go to next result with n)
 :100 (go to line number 100)
 :u (undo)
+yy (copy current line)
+p (paste after the current line)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 APACHE2
