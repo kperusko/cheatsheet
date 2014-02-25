@@ -90,6 +90,7 @@ chsh -s /bin/bash foobar (change login shell for the foobar user to bash. Normal
 
 chmod 777 -R Foo (add all permissions to the folder Foo recursively)
 chown administrator foo (set admnistrator user as owner of the file / folder foo)
+chown admin:admingrp foo (set administrator as owner and admingrp as group of the file/folder foo)
 chgrp administrator foo (set admnistrator user as group of the file / folder foo)
 setfacl/getfacl (get/set file ACL - more advanced version of default file permissions)
 umask 022 (default umask; sets the default permissions on the file when created. The mask is reversed from chmod - eg. umask 777 will mean that the new file will not have ---/000 permission or umask 000 that the new file will have rwx/777 permission)
@@ -100,6 +101,9 @@ tail -f foo (output appended data as the file foo grows - very useful when monit
 tail -100 foo (output last 100 lines)
 tail -n+50 foo (output all lines from file but skip first 50 lines)
 cat foo (output the entire file in the standard output)
+
+grep -i "foo" bar (print lines matching "foo" in bar folder/file; -i is case insensitive; -v lines not matching);
+zgrep "foo" bar (match lines in compressing files)
 
 yes | nl | head -100 > foobar.txt (creates foobar.txt file that contains 100 lines, each line contains line numer and "yes" string)
 
