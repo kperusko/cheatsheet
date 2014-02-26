@@ -246,6 +246,7 @@ git checkout foobar (switch to branch foobar)
 git clone -b foo file:///root/bar (clone branch foo from a local file)
 
 git diff origin/master HEAD (diff the commited local changes with master branch on origin repo)
+git commit --amend -m "New commit message" (amend the tip of the current branch)
 git rebase -i origin/master (interactive rebase to "squash" the commited changes on your local repo - WARNING - this changes history so use it only when you didn't push your changes to other repos)
 git reset --soft HEAD~1 (delete the last commit - WARNING -changes history)
 git clean -f (delete untracked files from repo; -d is for directories)
