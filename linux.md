@@ -213,6 +213,8 @@ C-x C-f /ssh:username@example.com:/ (opens a file over ssh on example.com server
 C-c right or C-c left (undo/redo window configuration)
 M-x reverse-region (reverses order of lines in the regions)
 
+M-x flop-frame (flip open frames horizontaly)
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 VIM
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
