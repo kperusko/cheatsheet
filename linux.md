@@ -214,6 +214,9 @@ C-c right or C-c left (undo/redo window configuration)
 M-x reverse-region (reverses order of lines in the regions)
 
 M-x flop-frame (flip open frames horizontaly)
+M-x kill-emacs (kill emacs server)
+
+M-x minimap-toggle (create/kill minimap)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 VIM
