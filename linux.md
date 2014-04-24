@@ -48,6 +48,9 @@ ss (utility for investigating sockets and services alternative to netstat)
 ifstat (ethernet traffic monitor)
 iftop (network traffic monitor - bandwith usage by on interface by host)
 apachetop -f /var/log/apache2/access.log (displays real-time web server statistics)
+mytop
+iperf -c 
+ethtool eth0
 
 du -sh (display total folder size)
 df -ahT /foo/bar/ (displays file system disk usage and partition types; if path is ommited all mounted disk usage is displayed)
@@ -174,8 +177,21 @@ Host foobar
 	IdentityFile ~/.ssh/somkeynames.key
 	
 ssh -f -N foobar (open local port fowarding: -f execute in background, -N do not execute remote command)
-
 foobar can be any string you like to represent server name
+
+When you're connected with SSH from server A to server B you can open port fowarding on the existing connection from server B to server A (reverse ssh tunnel)
+To reverse ssh tunnel on an existing connection type:
+ 
+Enter
+~C
+Enter
+-R 22222:localhost:33333
+
+This will open port fowarding from the server B to server A (B port is 22222, connecting port on your machine A is 33333). Port 22222 must be unused.
+To copy file foo from the server you can use:
+
+-R 22222:localhost:22  
+scp -P 22222 foo localhost:
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 SFTP - secure file transfer program
@@ -208,7 +224,7 @@ M-x select-text-in-quote (M-*; selects text in quotes, parenthesis etc. - custom
 C-x C-r (open list of recent files - custom shortcut)
 C-c ; (comment whole block - custom shortcut)
 
-C-x C-f /ssh:username@example.com:/ (opens a file over ssh on example.com server)
+C-x C-f ssh:username@example.com#12345:/ (opens a file over ssh on example.com server on port 12345)
 
 C-c right or C-c left (undo/redo window configuration)
 M-x reverse-region (reverses order of lines in the regions)
