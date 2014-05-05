@@ -52,6 +52,11 @@ mytop
 iperf -c 
 ethtool eth0
 
+tc (show / manipulate traffic control settings - useful for emulating slow and flaky network connections)
+tc qdisc change dev eth0 root netem delay 100ms 20ms distribution normal (slow down network - add 100ms +/-20ms normaly distributed variation in delay)
+tc qdisc change dev eth0 root netem loss 0.3% 25% (flaky connection - where 0.3% packages are lost and each successive probability depends by a quarter on the last one)
+tc qdisc delete dev eth0 root (deletes the restrictions)
+
 du -sh (display total folder size)
 df -ahT /foo/bar/ (displays file system disk usage and partition types; if path is ommited all mounted disk usage is displayed)
 mount (used for mounting filesystem or displaying the mounted filesystem if used without options)
