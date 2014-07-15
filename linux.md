@@ -60,6 +60,8 @@ tc qdisc delete dev eth0 root (deletes the restrictions)
 du -sh (display total folder size)
 df -ahT /foo/bar/ (displays file system disk usage and partition types; if path is ommited all mounted disk usage is displayed)
 mount (used for mounting filesystem or displaying the mounted filesystem if used without options)
+mount.cifs //hostname/sharename ~/destinationFoo -o user=username (mounts windows share to a local folder; requires cifs-utils package to be installed)
+
 
 lsb_release -a (displays distribution version information)
 uname -a (prints more general system information)
