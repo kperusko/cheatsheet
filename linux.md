@@ -48,10 +48,13 @@ ss (utility for investigating sockets and services alternative to netstat)
 ifstat (ethernet traffic monitor)
 iftop (network traffic monitor - bandwith usage by on interface by host)
 apachetop -f /var/log/apache2/access.log (displays real-time web server statistics)
-mytop
-iperf -c 
-ethtool eth0
+mytop -uroot -p (display MySQL server performance info like `top')
+ifconfig -a (display all interfaces which are currently available, even if down; used for configuring a network interface)
+iwconfig (configure a wireless network interface)
+ethtool eth0 (query or control network driver and hardware settings for interface eth0; useful for finding out details about the network devices)
 
+iperf -s (start a server listening on TCP port 5001; used for bandwith testing)
+iperf -c foobar (starts a client that connects to a foobar host where iperf server is already started and performs network throughput test)
 tc (show / manipulate traffic control settings - useful for emulating slow and flaky network connections)
 tc qdisc change dev eth0 root netem delay 100ms 20ms distribution normal (slow down network - add 100ms +/-20ms normaly distributed variation in delay)
 tc qdisc change dev eth0 root netem loss 0.3% 25% (flaky connection - where 0.3% packages are lost and each successive probability depends by a quarter on the last one)
