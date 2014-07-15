@@ -3,7 +3,7 @@ man -wK foo (search foo in man pages bodies)
 whatis (displays short descript from the manual)
 which foo (locate a command foo that will be executed - useful for debugging PATH problems)
 whereis foo (locate the binary, source, and manual page files for a command)
-command -v foo (write a string to standard output that indicates the pathname or command that will be used by the shell - can be used in bash script instead of which to find what file will be executed in curr. environment)
+command -v foo (write a string to standard output that indicates the pathname or command that will be used by the shell; can be used in bash script instead of which to find what file will be executed in curr. environment)
 
 history (show history of all commands in shell) - bash history is written in the file ~/.bash_history
 history -c (deletes shell history from RAM)
@@ -11,7 +11,8 @@ export HISTTIMEFORMAT="[%F] [%T] " (set the HISTTIMEFORMAT variable so that the 
 fc (processes command line history - open and editor to modify and reexecute previously entered commands)
 
 locate foobar (find files by name - updatedb must be started, usually by daily cron or manually)
-find /foo/bar/ -name "foobar*.pdf" -print0 | xargs -0 -I {} cp {} /tmp (find all pdf files in /foo/bar folder that are named foobar* and copy them to /tmp folder
+find /foo/bar/ -name "foobar.pdf" -print0 | xargs -0 -I {} cp {} /tmp (find all files in /foo/bar folder with name that starts with foobar and ends with pdf and copy them to /tmp folder
+find . -name "foo*" -type f -mtime 0 -delete (find and delete all files in the current directory with name that starts with foo and are modified today)
 
 $? (reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function)
 $$ (current process PID)
@@ -23,11 +24,11 @@ $! (PID of the last backgrounded process)
 !-5 (execute current -5 line in history)
 !foo (execute the last foo command in history)
 
-ps aux | grep procnamex (show all processes with name procnamex)
+ps aux | grep foobar (show all processes with name foobar)
 ps -p $$ (displays the current shell that is used)
 pstree -a (display a tree of processes with command line arguments)
-kill -9 12030 (kills process with PID 12030. -9 sends KILL signal to process so use it only when absolutely necessary)
-pkill -f procnamex (kills all processes with name procnamex)
+kill -9 12030 (kills process with PID 12030; -9 sends KILL signal to process so use it only when absolutely necessary)
+pkill -f foobar (kills all processes with name foobar)
 
 w (who is logged and what they are doing)
 last (show listing of last logged in users)
@@ -36,9 +37,9 @@ whoami (shows your username)
 id (prints info about user: real / effective userID, groupID etc.)
 
 top (show linux tasks / processes)
-htop (proces monitor)
-atop (resource monitor)
-dstat (generating system resources - usefull monitor tool)
+htop (proces monitor more advanced than top; shows separate cores and threads)
+atop (another process monitor)
+dstat (generating system resource statistics; very useful monitor tool)
 free -m (display amount of free and used memory in the system -m in MB)
 vmstat (display information about processes, memory, paging, block IO, traps, disks and cpu activity)
 iostat -d 2 (I/O statistics for devices and partitions)
@@ -53,6 +54,17 @@ ifconfig -a (display all interfaces which are currently available, even if down;
 iwconfig (configure a wireless network interface)
 ethtool eth0 (query or control network driver and hardware settings for interface eth0; useful for finding out details about the network devices)
 
+lsb_release -a (displays distribution version information)
+uname -a (prints more general system information)
+ulimit (get and sets user/process limits)
+dmidecode (displays DMI (SMBIOS) - all system information)
+sysctl -a (display all kernel parameters at runtime)
+cat /proc/cpuinfo (display info about cpu)
+cat /proc/meminfo (display info about memory)
+cat /proc/<pid>/limits (displays ulimits for the process with process id <pid>)
+cat /proc/mdstat (display status of RAID array)
+mdadm --detail /dev/md0 (manage MD devices aka Linux Software RAID; --detail displays detail of the md0 device)
+
 iperf -s (start a server listening on TCP port 5001; used for bandwith testing)
 iperf -c foobar (starts a client that connects to a foobar host where iperf server is already started and performs network throughput test)
 tc (show / manipulate traffic control settings - useful for emulating slow and flaky network connections)
@@ -65,22 +77,10 @@ df -ahT /foo/bar/ (displays file system disk usage and partition types; if path 
 mount (used for mounting filesystem or displaying the mounted filesystem if used without options)
 mount.cifs //hostname/sharename ~/destinationFoo -o user=username (mounts windows share to a local folder; requires cifs-utils package to be installed)
 
-
-lsb_release -a (displays distribution version information)
-uname -a (prints more general system information)
-ulimit (get and sets user limits)
-dmidecode (displays DMI (SMBIOS) - all system information)
-sysctl -a (display all kernel parameters at runtime)
-cat /proc/cpuinfo (display info about cpu)
-cat /proc/meminfo (display info about memory)
-cat /proc/<pid>/limits (displays ulimits for the process with process id <pid>)
-cat /proc/mdstat (display status of RAID array)
-mdadm --detail /dev/md0 (manage MD devices aka Linux Software RAID; --detail displays detail of the md0 device)
-
 dig -x 176.9.134.62 (DNS lookup - reverse lookup of IP adress)
 route (show / manipulate the IP routing table - also displays gateway)
 
-stat foo.txt (display file status - similar to properties on win systems - displays access/modify/change dates and other useful info for the file)
+stat foo.txt (display file status; similar to properties on win systems; displays access/modify/change dates and other useful info for the file)
 file foo.txt (detect file type; -bi will detect encoding; try to use chardet if cannot detect charset properly)
 chardet foo.txt (universal character encoding detector)
 
@@ -101,7 +101,7 @@ vipw (edits /etc/passwd file; -s to edit /etc/shadow)
 vigr (edits /etc/group file; -s to edit /etc/gshadow)
 chsh -s /bin/bash foobar (change login shell for the foobar user to bash. Normal users can change only their shell, root can change any account)
 
-chmod 777 -R Foo (add all permissions to the folder Foo recursively)
+chmod 644 -R foo (change permissions to the folder foo recursively)
 chown administrator foo (set admnistrator user as owner of the file / folder foo)
 chown admin:admingrp foo (set administrator as owner and admingrp as group of the file/folder foo)
 chgrp administrator foo (set admnistrator user as group of the file / folder foo)
@@ -115,7 +115,7 @@ tail -100 foo (output last 100 lines)
 tail -n+50 foo (output all lines from file but skip first 50 lines)
 cat foo (output the entire file in the standard output)
 
-grep -i "foo" bar (print lines matching "foo" in bar folder/file; -i is case insensitive; -v lines not matching);
+grep -i "foo" bar (print lines matching "foo" in bar folder/file; -i is case insensitive; -v lines not matching; -C 20 show in context; -o show only matching; -l show only files with matches)
 zgrep "foo" bar (match lines in compressing files)
 
 yes | nl | head -100 > foobar.txt (creates foobar.txt file that contains 100 lines, each line contains line numer and "yes" string)
@@ -154,7 +154,6 @@ apport /foo/bar/crash.report - opens apport crash log (check /var/crash or /var/
 gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file and you can see backtrace with "bt" or "bt full")
 apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump extracted from the report)
 
-sudo service rabbitmq-server start (starts RabbitMQ server)
 sudo rabbitmqctl list_queues (shows queue list)		
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -253,16 +252,17 @@ ESCAPE (keyboard button) enables entering the commands in editor
 :100 (go to line number 100)
 :u (undo)
 yy (copy current line)
+dd (cut current line)
 p (paste after the current line)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 APACHE2
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 sudo service apache2 start|graceful|graceful-stop|restart|stop or /etc/init.d/apache2 start|graceful|graceful-stop|restart|stop (graceful restarts apache2 gracefuly)
-sudo a2ensite imesitea.com (enable virtual host site in apache. mod_rewrite module must be installed)
-sudo a2dissite imesitea.com (disable virtual host site in apache) 
-sudo a2enmod deflate (rewrite - omogućavanje apache2 modula deflate / rewrite )
-sudo a2dismod
+sudo a2ensite example.com (enable virtual host site in apache. mod_rewrite module must be installed)
+sudo a2dissite example.com (disable virtual host site in apache) 
+sudo a2enmod foobar (enable apache2 module foobar)
+sudo a2dismod foobar (disable apache2 module foobar)
 apache2ctl -M (list all enabled modules for apache)
 
 sudo htpasswd -cs /path/to/some/file/foo bar (creates a new file bar at specified path with password for user bar. This file can then be used with AuthBasicProvider file and apache auth mod. -s is encrypting with SHA encryption for password. Standard settings will encrypt only first 8 chars).
@@ -276,7 +276,7 @@ mysqldump -uroot -ppassword --single-transaction --routines --triggers Foo > dum
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 Mongo
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-quse admin
+use admin
 db.runCommand({getCmdLineOpts:1}); ## displays options with which the mongod process was started (Command line parameters + parsed parameters from the config file)
 
 mongodump -d dbNameFoo -o folderNameBar
