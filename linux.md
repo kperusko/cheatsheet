@@ -91,7 +91,6 @@ sudo fuser -4 -v -n tcp 80 (find all processes using TCP port 80, -v verbose, -4
 sudo strace -p 123 (trace system calls and signals for process with PID 123 - usefull when debugging processes. Use -f to trace forked processes and -e to see only file activity - usefull when tracking evasive config files)
 telinit (change system run level)
 
-sudo su (login as super user)
 su - foobar (login as foobar user - but spawn shell in login mode - e.g. bash reads ~/.bash_profile in login mode and ~/.bashrc in nonlogin mode)
 
 useradd foobar (create a new user with username foobar)
@@ -132,7 +131,8 @@ sh deploy.sh *** OR *** ./deploy.sh (start SH script - to start a script with ./
 sh deploy.sh &! (only for zsh - starts the script as a asynchronous job and disown the process - the disowned process will not be suspended automatically)
 
 time foobar (runs foobar, displays time needed for running the command and summarizes system resource usage)
-
+watch -n 5 foobar (runs command foobar periodically every 5 seconds and displays output in full screen)
+watch -d ls -lah /tmp (watch as the content of a directory changes every 2 seconds)
 diff -y foo bar (compares two files side-by-side; also works with directories)
 
 sed -i "s/foo/bar/g" bazfile (global inplace search and replace in files - replaces foo with bar in file bazfile)
@@ -342,6 +342,4 @@ Ctrl+L (clear the terminal screen)
 Arrow up / down (displays the previously used commands)
 Shift+Insert (paste)
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!
-etckeeper
-!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Alt+SysRq+reisub (magic sysreq - safely reboot frozen linux machine)
