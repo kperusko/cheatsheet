@@ -256,6 +256,10 @@ mongorestore folderFoo
 mongotop
 mongostat 
 
+var rst = new ReplSetTest({name : "rstest", nodes: 3});
+rst.startSet();
+rst.initiate();
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 GIT
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
