@@ -64,6 +64,7 @@ cat /proc/meminfo (display info about memory)
 cat /proc/<pid>/limits (displays ulimits for the process with process id <pid>)
 cat /proc/mdstat (display status of RAID array)
 mdadm --detail /dev/md0 (manage MD devices aka Linux Software RAID; --detail displays detail of the md0 device)
+objdump -x vmware-tools-upgrader-64| grep NEEDED (display information from object file; displays needed libraries for the executable)
 
 iperf -s (start a server listening on TCP port 5001; used for bandwith testing)
 iperf -c foobar (starts a client that connects to a foobar host where iperf server is already started and performs network throughput test)
