@@ -209,12 +209,12 @@ SFTP - secure file transfer program
 sftp root@hostname.example.com  (SFTP connection to remote server)
 get foo.txt (when connected with sftp download the file Foo.txt from remote server)
 put foo.txt (upload the foo.txt to the remote server from your local directory)
-cd (change directory on remote server)
-lcd (change directory on local server)
-mkdir (mkdir on remote server)
-lmkdir (mkdir on local server)
-ls (list directory contents on remote server)
-lls (list directory contents on local server)
+
+commands are executed commands on the remote server, e.g.:
+cd, mkdir, ls
+
+commands that start with "l" are executed on the local server, e.g.
+lcd, lmkdir, lls
 
 !!!!!!!!
 IPTABLES
@@ -272,13 +272,13 @@ apache2ctl -M (list all enabled modules for apache)
 sudo htpasswd -cs /path/to/some/file/foo bar (creates a new file bar at specified path with password for user bar. This file can then be used with AuthBasicProvider file and apache auth mod. -s is encrypting with SHA encryption for password. Standard settings will encrypt only first 8 chars).
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-MySQL
+MYSQL
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 mysql -uroot -ppassword
 mysqldump -uroot -ppassword --single-transaction --routines --triggers Foo > dumpfile.sql (safest way to dump database)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-Mongo
+MONGODB
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 use admin
 db.runCommand({getCmdLineOpts:1}); ## displays options with which the mongod process was started (Command line parameters + parsed parameters from the config file)
@@ -331,7 +331,7 @@ puppet describe -s (Prints help about Puppet resource types, providers, and meta
 facter (collects and displays facts about system. Installed with puppet)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-shell scripting
+SHELL SCRIPTING
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 $1 (1st command line argument)
 $n (n-th command line argument)
@@ -343,7 +343,7 @@ local foo (defines local var in the function)
 read (read one line from standard input - usefull when writing shell scripts and prompting user for info)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-Terminal shortcuts
+TERMINAL SHORTCUTS
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 Ctrl+C (kills current process by sending interrupt signal: INT)
 Ctrl+D (sends the quit signal to current process: QUIT)
