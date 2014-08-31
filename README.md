@@ -1,3 +1,5 @@
-# Linux cheat sheet
+# About
 
-This is a list of useful commands in Linux and some other useful Linux tools.
+This repo contains list of files with commands, tips and tricks and various other optimizations to the Linux and other related tools and apps.
+
+It's mostly a reference list of very useful shell commands / tools for administration and scripting.
