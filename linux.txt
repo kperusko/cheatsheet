@@ -158,14 +158,23 @@ apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump e
 systemd-analyze (analyze system boot-up performance)
 systemd-analyze blame (prints a list of running units; useful for optimizing boot time)
 
-sudo systemctl disable vmware.service (disables starting the vmware service on boot)
-
-rpm -q --whatrequires fooBar (what package requires fooBar capability)
+sudo systemctl disable vmware.service (disables starting the vmware service on boot - only on OS that's using systemd)
 
 sudo rabbitmqctl list_queues (shows queue list)		
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-APT (Advance Package Tool)
+YUM (Yellowdog updater, modified)/ RPM
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+yum whatprovides fooBar (what package provides some feature or file)
+yum clean all (clean all cache and metadata)
+yum autoremove (remove packages that are not required by any packages - "leaf" packages)
+yum search fooBar (find packages that contain fooBar)
+
+rpm -q --whatrequires fooBar (what package requires fooBar capability)
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+APT (Advance Package Tool) / DPKG
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 apt-get install packageNameFoo (installs a packageNameFoo program from the default repository)
 apt-get update (resynchronizes package index from their sources - updates versions of the apps in the APT)
