@@ -155,6 +155,13 @@ apport /foo/bar/crash.report - opens apport crash log (check /var/crash or /var/
 gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file and you can see backtrace with "bt" or "bt full")
 apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump extracted from the report)
 
+systemd-analyze (analyze system boot-up performance)
+systemd-analyze blame (prints a list of running units; useful for optimizing boot time)
+
+sudo systemctl disable vmware.service (disables starting the vmware service on boot)
+
+rpm -q --whatrequires fooBar (what package requires fooBar capability)
+
 sudo rabbitmqctl list_queues (shows queue list)		
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
