@@ -68,6 +68,8 @@ objdump -x vmware-tools-upgrader-64| grep NEEDED (display information from objec
 
 lshw (list all hardware info)
 lshw -C disk (display only disk info)	
+lsusb (display information about USB buses in the system and devices connected to them)
+lspci (display information about PCI buses in the system and devices connected to them)
 
 du -sh (display total folder size)
 df -ahT /foo/bar/ (displays file system disk usage and partition types; if path is ommited all mounted disk usage is displayed)
@@ -317,6 +319,8 @@ GIT
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 git init --bare (init empty git repository that will be a remote repo)
 git remote add foo ssh://root@example.com/~/bar (add remote repository named foo on server example.com in folder ~/bar )
+git remote set-url http://example.com/repo origin (moves the remote repo to the new URL; useful when location of the upstream changed)
+
 git push foo bar (push to remote repository foo branch bar)
 git svn dcommit (commit to svn repository)
 git checkout foobar (switch to branch foobar)
@@ -327,6 +331,8 @@ git commit --amend -m "New commit message" (amend the tip of the current branch)
 git rebase -i origin/master (interactive rebase to "squash" the commited changes on your local repo - WARNING - this changes history so use it only when you didn't push your changes to other repos)
 git reset --soft HEAD~1 (delete the last commit - WARNING -changes history)
 git clean -f (delete untracked files from repo; -d is for directories)
+
+git mergetool -t fooBar (use GUI tool fooBar for merging conflicts; meld, kdiff3)
 
 git config --global user.email "email@example.com" (set global config e-mail for all git repos)
 git config --global user.name "Name" (set global config name for all git repos)
