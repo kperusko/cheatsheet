@@ -64,6 +64,8 @@ cat /proc/meminfo (display info about memory)
 cat /proc/<pid>/limits (displays ulimits for the process with process id <pid>)
 cat /proc/mdstat (display status of RAID array)
 mdadm --detail /dev/md0 (manage MD devices aka Linux Software RAID; --detail displays detail of the md0 device)
+objdump -x vmware-tools-upgrader-64| grep NEEDED (display information from object file; displays needed libraries for the executable)
+
 lshw (list all hardware info)
 lshw -C disk (display only disk info)	
 
@@ -159,11 +161,26 @@ initctl list (lists all upstart jobs - to disable upstart job foo add file /etc/
 apport /foo/bar/crash.report - opens apport crash log (check /var/crash or /var/log/apport.log usually contains additinal info about crash reports and coredumps)
 gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file and you can see backtrace with "bt" or "bt full")
 apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump extracted from the report)
+systemd-analyze (analyze system boot-up performance)
+systemd-analyze blame (prints a list of running units; useful for optimizing boot time)
+
+sudo systemctl disable vmware.service (disables starting the vmware service on boot - only on OS that's using systemd)
 
 sudo rabbitmqctl list_queues (shows queue list)		
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-APT (Advance Package Tool)
+YUM (Yellowdog updater, modified)/ RPM
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+yum whatprovides fooBar (what package provides some feature or file)
+yum clean all (clean all cache and metadata)
+yum autoremove (remove packages that are not required by any packages - "leaf" packages)
+yum search fooBar (find packages that contain fooBar)
+
+rpm -q --whatrequires fooBar (what package requires fooBar capability)
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+APT (Advance Package Tool) / DPKG
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 apt-get install packageNameFoo (installs a packageNameFoo program from the default repository)
 apt-get update (resynchronizes package index from their sources - updates versions of the apps in the APT)
@@ -214,12 +231,11 @@ SFTP - secure file transfer program
 sftp root@hostname.example.com  (SFTP connection to remote server)
 get foo.txt (when connected with sftp download the file Foo.txt from remote server)
 put foo.txt (upload the foo.txt to the remote server from your local directory)
-cd (change directory on remote server)
-lcd (change directory on local server)
-mkdir (mkdir on remote server)
-lmkdir (mkdir on local server)
-ls (list directory contents on remote server)
-lls (list directory contents on local server)
+commands are executed commands on the remote server, e.g.:
+cd, mkdir, ls
+
+commands that start with "l" are executed on the local server, e.g.
+lcd, lmkdir, lls
 
 !!!!!!!!
 IPTABLES
@@ -245,6 +261,9 @@ C-c right or C-c left (undo/redo window configuration)
 M-x reverse-region (reverses order of lines in the regions)
 
 M-x flop-frame (flip open frames horizontaly)
+M-x kill-emacs (kill emacs server)
+
+M-x minimap-toggle (create/kill minimap)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 VIM
@@ -274,13 +293,13 @@ apache2ctl -M (list all enabled modules for apache)
 sudo htpasswd -cs /path/to/some/file/foo bar (creates a new file bar at specified path with password for user bar. This file can then be used with AuthBasicProvider file and apache auth mod. -s is encrypting with SHA encryption for password. Standard settings will encrypt only first 8 chars).
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-MySQL
+MYSQL
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 mysql -uroot -ppassword
 mysqldump -uroot -ppassword --single-transaction --routines --triggers Foo > dumpfile.sql (safest way to dump database)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-Mongo
+MONGODB
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 use admin
 db.runCommand({getCmdLineOpts:1}); ## displays options with which the mongod process was started (Command line parameters + parsed parameters from the config file)
@@ -289,6 +308,9 @@ mongodump -d dbNameFoo -o folderNameBar
 mongorestore folderFoo
 mongotop
 mongostat 
+var rst = new ReplSetTest({name : "rstest", nodes: 3});
+rst.startSet();
+rst.initiate();
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 GIT
@@ -301,6 +323,7 @@ git checkout foobar (switch to branch foobar)
 git clone -b foo file:///root/bar (clone branch foo from a local file)
 
 git diff origin/master HEAD (diff the commited local changes with master branch on origin repo)
+git commit --amend -m "New commit message" (amend the tip of the current branch)
 git rebase -i origin/master (interactive rebase to "squash" the commited changes on your local repo - WARNING - this changes history so use it only when you didn't push your changes to other repos)
 git reset --soft HEAD~1 (delete the last commit - WARNING -changes history)
 git clean -f (delete untracked files from repo; -d is for directories)
@@ -328,7 +351,7 @@ puppet describe -s (Prints help about Puppet resource types, providers, and meta
 facter (collects and displays facts about system. Installed with puppet)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-shell scripting
+SHELL SCRIPTING
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 $1 (1st command line argument)
 $n (n-th command line argument)
@@ -340,7 +363,7 @@ local foo (defines local var in the function)
 read (read one line from standard input - usefull when writing shell scripts and prompting user for info)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-Terminal shortcuts
+TERMINAL SHORTCUTS
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 Ctrl+C (kills current process by sending interrupt signal: INT)
 Ctrl+D (sends the quit signal to current process: QUIT)

@@ -1,0 +1,28 @@
+Useful tools/links for optimizing the Fedora boot process:
+
+This will display the slow services when booting OS.
+
+sudo systemd-analyze blame
+
+To display the boot process using a SVG chart:
+
+sudo systemd-analyze plot > /tmp/boot.svg && xdg-open /tmp/boot.svg
+
+Based on this list you can disable non important devices with:
+
+sudo systemctl disable vmware.service
+
+The option "mask" can be used instead of "disable", but that will disable the service even for manual start.
+
+List of services that are not needed as boot:
+
+vmware.service (services needed to run VMware virtual machines)
+jexec.service (direct execution of JAR files on Linux)
+avahi-daemon (detection of network devices such as printers and scanners)
+
+(live CD services)
+for i in livesys livesys-late spice-vdagentd ; do sudo systemctl disable $i;done
+
+Useful links:
+http://www.harald-hoyer.de/2013/11/13/fedora-boot-optimization/
+https://ask.fedoraproject.org/en/question/33515/fedora19-improving-boot-timedisabling-useless-services/
