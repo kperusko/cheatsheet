@@ -13,6 +13,7 @@ fc (processes command line history - open and editor to modify and reexecute pre
 locate foobar (find files by name - updatedb must be started, usually by daily cron or manually)
 find /foo/bar/ -name "foobar.pdf" -print0 | xargs -0 -I {} cp {} /tmp (find all files in /foo/bar folder with name that starts with foobar and ends with pdf and copy them to /tmp folder
 find . -name "foo*" -type f -mtime 0 -delete (find and delete all files in the current directory with name that starts with foo and are modified today)
+find . -not -name "*.foo" (find all files not ending with .foo)
 
 $? (reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function)
 $$ (current process PID)
