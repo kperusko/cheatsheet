@@ -45,6 +45,8 @@ vmstat (display information about processes, memory, paging, block IO, traps, di
 iostat -d 2 (I/O statistics for devices and partitions)
 iotop (top-like I/O monitor)
 netstat (network statistics tool usefull in analyzing network connections, routing tables, network interfaces)
+netstat -tulpn (show services that are liestening to the TCP/UDP ports)
+nmap -sS 127.0.0.1 (network exploration tool and security / port scanner - show open ports on the server; WARNING don't use this to scan remote computers, because this can be considered an attack / hacking attempt)
 ss (utility for investigating sockets and services alternative to netstat)
 ifstat (ethernet traffic monitor)
 iftop (network traffic monitor - bandwith usage by on interface by host)
