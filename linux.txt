@@ -13,6 +13,7 @@ fc (processes command line history - open and editor to modify and reexecute pre
 locate foobar (find files by name - updatedb must be started, usually by daily cron or manually)
 find /foo/bar/ -name "foobar.pdf" -print0 | xargs -0 -I {} cp {} /tmp (find all files in /foo/bar folder with name that starts with foobar and ends with pdf and copy them to /tmp folder
 find . -name "foo*" -type f -mtime 0 -delete (find and delete all files in the current directory with name that starts with foo and are modified today)
+find . -not -name "*.foo" (find all files not ending with .foo)
 
 $? (reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function)
 $$ (current process PID)
@@ -45,6 +46,8 @@ vmstat (display information about processes, memory, paging, block IO, traps, di
 iostat -d 2 (I/O statistics for devices and partitions)
 iotop (top-like I/O monitor)
 netstat (network statistics tool usefull in analyzing network connections, routing tables, network interfaces)
+netstat -tulpn (show services that are liestening to the TCP/UDP ports)
+nmap -sS 127.0.0.1 (network exploration tool and security / port scanner - show open ports on the server; WARNING don't use this to scan remote computers, because this can be considered an attack / hacking attempt)
 ss (utility for investigating sockets and services alternative to netstat)
 ifstat (ethernet traffic monitor)
 iftop (network traffic monitor - bandwith usage by on interface by host)
@@ -66,17 +69,26 @@ cat /proc/mdstat (display status of RAID array)
 mdadm --detail /dev/md0 (manage MD devices aka Linux Software RAID; --detail displays detail of the md0 device)
 objdump -x vmware-tools-upgrader-64| grep NEEDED (display information from object file; displays needed libraries for the executable)
 
+lshw (list all hardware info)
+lshw -C disk (display only disk info)	
+lsusb (display information about USB buses in the system and devices connected to them)
+lspci (display information about PCI buses in the system and devices connected to them)
+
+du -sh (display total folder size)
+df -ahT /foo/bar/ (displays file system disk usage and partition types; if path is ommited all mounted disk usage is displayed)
+fdisk /dev/sda (tool for command line partitioning)		
+mkfs -t ext4 /dev/sda1 (build ext4 filesystem on a partition sda1)
+blkid (print block device attributes - useful for finding UUID of the partitions)
+mount (used for mounting filesystem or displaying the mounted filesystem if used without options)
+mount -a (mounts all filesystems mentioned in the /etc/fstab except for those whose line contains noauto)
+mount.cifs //hostname/sharename ~/destinationFoo -o user=username (mounts windows share to a local folder; requires cifs-utils package to be installed)
+
 iperf -s (start a server listening on TCP port 5001; used for bandwith testing)
 iperf -c foobar (starts a client that connects to a foobar host where iperf server is already started and performs network throughput test)
 tc (show / manipulate traffic control settings - useful for emulating slow and flaky network connections)
 tc qdisc change dev eth0 root netem delay 100ms 20ms distribution normal (slow down network - add 100ms +/-20ms normaly distributed variation in delay)
 tc qdisc change dev eth0 root netem loss 0.3% 25% (flaky connection - where 0.3% packages are lost and each successive probability depends by a quarter on the last one)
 tc qdisc delete dev eth0 root (deletes the restrictions)
-
-du -sh (display total folder size)
-df -ahT /foo/bar/ (displays file system disk usage and partition types; if path is ommited all mounted disk usage is displayed)
-mount (used for mounting filesystem or displaying the mounted filesystem if used without options)
-mount.cifs //hostname/sharename ~/destinationFoo -o user=username (mounts windows share to a local folder; requires cifs-utils package to be installed)
 
 dig -x 176.9.134.62 (DNS lookup - reverse lookup of IP adress)
 route (show / manipulate the IP routing table - also displays gateway)
@@ -154,7 +166,6 @@ initctl list (lists all upstart jobs - to disable upstart job foo add file /etc/
 apport /foo/bar/crash.report - opens apport crash log (check /var/crash or /var/log/apport.log usually contains additinal info about crash reports and coredumps)
 gdb /usr/bin/php5 /path/to/coredump (this will open GNU debugger for the file and you can see backtrace with "bt" or "bt full")
 apport-retrace -R -g _usr_bin_php5.1000.crash (will open gdb with the coredump extracted from the report)
-
 systemd-analyze (analyze system boot-up performance)
 systemd-analyze blame (prints a list of running units; useful for optimizing boot time)
 
@@ -225,7 +236,6 @@ SFTP - secure file transfer program
 sftp root@hostname.example.com  (SFTP connection to remote server)
 get foo.txt (when connected with sftp download the file Foo.txt from remote server)
 put foo.txt (upload the foo.txt to the remote server from your local directory)
-
 commands are executed commands on the remote server, e.g.:
 cd, mkdir, ls
 
@@ -303,7 +313,6 @@ mongodump -d dbNameFoo -o folderNameBar
 mongorestore folderFoo
 mongotop
 mongostat 
-
 var rst = new ReplSetTest({name : "rstest", nodes: 3});
 rst.startSet();
 rst.initiate();
@@ -313,6 +322,8 @@ GIT
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 git init --bare (init empty git repository that will be a remote repo)
 git remote add foo ssh://root@example.com/~/bar (add remote repository named foo on server example.com in folder ~/bar )
+git remote set-url http://example.com/repo origin (moves the remote repo to the new URL; useful when location of the upstream changed)
+
 git push foo bar (push to remote repository foo branch bar)
 git svn dcommit (commit to svn repository)
 git checkout foobar (switch to branch foobar)
@@ -323,6 +334,8 @@ git commit --amend -m "New commit message" (amend the tip of the current branch)
 git rebase -i origin/master (interactive rebase to "squash" the commited changes on your local repo - WARNING - this changes history so use it only when you didn't push your changes to other repos)
 git reset --soft HEAD~1 (delete the last commit - WARNING -changes history)
 git clean -f (delete untracked files from repo; -d is for directories)
+
+git mergetool -t fooBar (use GUI tool fooBar for merging conflicts; meld, kdiff3)
 
 git config --global user.email "email@example.com" (set global config e-mail for all git repos)
 git config --global user.name "Name" (set global config name for all git repos)
