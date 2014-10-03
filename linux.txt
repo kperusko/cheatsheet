@@ -182,7 +182,7 @@ yum autoremove (remove packages that are not required by any packages - "leaf" p
 yum search fooBar (find packages that contain fooBar)
 
 rpm -q --whatrequires fooBar (what package requires fooBar capability)
-
+rpm -ql package-name (list the content of the installed package)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 APT (Advance Package Tool) / DPKG
