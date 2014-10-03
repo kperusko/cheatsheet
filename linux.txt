@@ -381,3 +381,10 @@ Arrow up / down (displays the previously used commands)
 Shift+Insert (paste)
 
 Alt+SysRq+reisub (magic sysreq - safely reboot frozen linux machine)
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+USESFUL APPS
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+fail2ban (monitors log files and temporarily or persistently bans failure-prone addresses by updating existing firewall rules)
+etckeeper (store /etc in git, mercurial, bzr or darcs)
+
