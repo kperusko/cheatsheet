@@ -277,13 +277,17 @@ INSERT (keyboard button) enables editing the file
 ESCAPE (keyboard button) enables entering the commands in editor
 :q! (command for force exiting without changes)
 :wq (save changes and exit)
-:$ (go to the end of file)
+:$ or g (jump to end of file)
+:1 or gg (jump to first line in a file)
 / search in file (go to next result with n)
 :100 (go to line number 100)
 :u (undo)
 yy (copy current line)
 dd (cut current line)
 p (paste after the current line)
+:%s/foo/bar/gci (replace foo with bar; g globally, c ask for confirmation, i - case insensitive)
+
+
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 APACHE2
