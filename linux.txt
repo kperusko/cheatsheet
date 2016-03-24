@@ -290,8 +290,6 @@ dd (cut current line)
 p (paste after the current line)
 :%s/foo/bar/gci (replace foo with bar; g globally, c ask for confirmation, i - case insensitive)
 
-
-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 APACHE2
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -336,6 +334,7 @@ git svn dcommit (commit to svn repository)
 git checkout foobar (switch to branch foobar)
 git clone -b foo file:///root/bar (clone branch foo from a local file)
 
+git branch -a --no-merged (show all unmerge branches)
 git diff origin/master HEAD (diff the commited local changes with master branch on origin repo)
 git commit --amend -m "New commit message" (amend the tip of the current branch)
 git rebase -i origin/master (interactive rebase to "squash" the commited changes on your local repo - WARNING - this changes history so use it only when you didn't push your changes to other repos)
@@ -395,3 +394,7 @@ USESFUL APPS
 fail2ban (monitors log files and temporarily or persistently bans failure-prone addresses by updating existing firewall rules)
 etckeeper (store /etc in git, mercurial, bzr or darcs)
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!
+HOMESTEAD
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+serve foo.local /foo/bar/public 80 (Homestead 5.0 - serve foo.local from folder /foo/bar/public on port 80)

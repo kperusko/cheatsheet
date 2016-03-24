@@ -1,0 +1,160 @@
+At the grub prompt, use the cursor keys to move to the kernel that you are intending to boot and press the E key to edit. Use the cursor key to move to the line that starts linux and at the end of the line add:
+
+vga=791 
+
+for 1024x768 24 bit. Few examples:
+
+791 - 1024x768, 16 bit
+792 - 1024x768, 24 bit
+794 - 1280x1024, 16 bit
+795 - 1280x1024, 24 bit
+
+Modify /etc/default/grub and append the stanza above to the GRUB_CMD_LINE line.
+
+Next run:
+
+# grub2-mkconfig -o /boot/grub2/grub.cfg
+
+
+
+
+#############################
+Check network adapters
+
+ip link
+ip addr
+
+To enable DHCP:
+
+vi /etc/sysconfig/network-scripts/ifcfg-eth0
+
+DEVICE=eth0
+BOOTPROTO=dhcp
+HWADDR=00:05:29:E0:4F:3D
+ONBOOT=yes
+TYPE=Ethernet
+
+#ONBOOT=yes important
+
+
+#####################
+Install ipconfig 
+
+yum install net-tools
+
+
+#####################
+LAMP
+
+#####################
+Apache
+
+yum install httpd
+
+# Allow apache req. through firewall
+sudo firewall-cmd --permanent --zone=public --add-service=http
+sudo firewall-cmd --permanent --zone=public --add-service=https
+
+# start service
+systemctl start httpd
+
+# start at boot
+systemctl enable httpd
+
+
+#####################
+MariaDB
+
+sudo yum install mariadb-server mariadb
+
+When the installation is complete, we need to start MariaDB with the following command:
+
+sudo systemctl start mariadb
+
+Now that our MySQL database is running, we want to run a simple security script that will remove some dangerous defaults and lock down access to our database system a little bit. Start the interactive script by running:
+
+sudo mysql_secure_installation
+
+
+#####################
+PHP 
+
+#Add IUS/EPEL repos
+#https://iuscommunity.org/pages/Repos.html
+
+wget https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm
+wget https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+rpm -Uvh epel-release-7-5.noarch.rpm ius-release-1.0-14.ius.centos7.noarch.rpm
+
+yum install php56u
+yum install php56u-mysql
+
+
+# Craft only - missing PHP modules
+yum install php56u-posix
+# this will fix not writteable error
+yum install php56u-mbstring
+
+# Fix for SELinux - when is_writteable constantly returns false for all folders
+setsebool -P httpd_unified on
+
+
+
+######################
+Install varnish
+yum -y install varnish
+
+#To configure varnish to start at boot, run the following command:
+
+systemctl enable varnish
+
+#To start varnish, run the following command as root:
+
+systemctl start varnish
+
+
+#Configure Apache & Varnish
+
+vim /etc/default/varnish
+VARNISH_LISTEN_PORT=80
+
+vim /etc/varnish/default.vcl
+backend default {
+    .host = "127.0.0.1";
+    .port = "8080";
+}
+
+vim /etc/httpd/conf.d/vhost_nes.local.conf
+Listen 8080
+
+vim /etc/httpd/conf.d/vhost_nes.local.conf
+<VirtualHost *:8080>
+
+    ServerName nes.local
+    ErrorLog     logs/nes-error_log
+    CustomLog    logs/nes-access_log combined
+
+    DocumentRoot /var/www/nes.local/project/public
+
+    <Directory /var/www/nes.local/>
+        Require all denied
+    </Directory>
+
+    <Directory /var/www/nes.local/project/public>
+        Require all granted
+        Allowoverride all
+    </Directory>
+
+    RewriteEngine On
+    RewriteOptions Inherit
+
+</VirtualHost>
+
+#mount share on virtualbox 
+sudo mount -t vboxsf Code /home/admin/Code/ -o uid=admin -o gid=admin
+
+As root, run this command to add your new user to the wheel group (substitute the highlighted word with your new user):
+
+    gpasswd -a demo wheel
+
+
