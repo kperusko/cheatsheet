@@ -60,6 +60,7 @@ iwconfig (configure a wireless network interface)
 ethtool eth0 (query or control network driver and hardware settings for interface eth0; useful for finding out details about the network devices)
 
 lsb_release -a (displays distribution version information)
+cat /etc/*release (displays distribution version information - centOS)
 uname -a (prints more general system information)
 ulimit (get and sets user/process limits)
 dmidecode (displays DMI (SMBIOS) - all system information)
@@ -323,6 +324,18 @@ rst.startSet();
 rst.initiate();
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
+PosgreSQL client
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+psql -h 127.0.0.1 -p 5432 -U foo bar (connect with interactive terminal to a db on localhost on standard port 5432, with user foo to db bar)
+\q (quit client)
+\? (help with commands)
+\c (connect to db)
+\l (list all databases)
+\dt (list tables)
+\dt .* (list tables in all schemas)
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
 GIT
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 git init --bare (init empty git repository that will be a remote repo)
@@ -337,6 +350,7 @@ git clone -b foo file:///root/bar (clone branch foo from a local file)
 git branch -a --no-merged foobar (show all branches that are not merged into foobar branch)
 git branch --merged (show branches merged into HEAD i.e. tip of current branch)
 git diff origin/master HEAD (diff the commited local changes with master branch on origin repo)
+git fetch && git log ..origin/master (show incoming changes from a remote branch before mergin them; similar to hg incoming)
 git log --left-right --cherry-pick --oneline foo..bar (show different commits not shared between the branches foo and bar)
 git cherry foo bar (show commits from branch bar that have to be applied to branch foo)
 
