@@ -206,8 +206,9 @@ dpkg-query -L packageNameFoo (debian package manager: list files installed from 
 SSH
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 ssh root@hostname.example.com -p 12345 *** OR *** ssh hostaname.example.com -l root -p 12345 (ssh connection on server hostaname.example.com with username root on port 12345)
-ssh -L 1234:localhost:2345 user@hostname.example.com (port forwarding - useful when you want to connect on server hostname.example.com on port 2345, from your machine on port 1234 - usefull to connect to restricted services via ssh)
+ssh -N -L 1234:hostname.example:2345 user@hostname.example.com (-L port forwarding - when you want to connect on server hostname.example.com on port 2345, from your machine on port 1234 - usefull to connect to restricted services via ssh; -N do not execute remote command)
 ssh -D 9999 -C foo@bar.example.com (-D application-level port forwarding - usefull when wanting to connect an application through proxy on another server - e.g. connecting with Firefox remotely to an server as it was connected locally)
+
 
 ~/.ssh/config
 Host foobar 
@@ -246,9 +247,9 @@ cd, mkdir, ls
 commands that start with "l" are executed on the local server, e.g.
 lcd, lmkdir, lls
 
-!!!!!!!!
-IPTABLES
-!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!
+IPTABLES - firewall
+!!!!!!!!!!!!!!!!!!!!!!!!!!
 iptables -A INPUT -s 199.1.1.1 -p tcp --destination-port 27017 -j ACCEPT (allow incoming connections on TCP protocol going to local port 27017 from IP 199.1.1.1)
 iptables -A INPUT -p tcp --destination-port 27017 -j DROP (drop all incoming TCP connections going to port 27017, that are not whitelisted above)
 
@@ -342,6 +343,9 @@ git init --bare (init empty git repository that will be a remote repo)
 git remote add foo ssh://root@example.com/~/bar (add remote repository named foo on server example.com in folder ~/bar )
 git remote set-url http://example.com/repo origin (moves the remote repo to the new URL; useful when location of the upstream changed)
 
+git --no-pager log (execute the log command without having paginated results)
+git log --all --format='%aN %ad' (show log across all branchs, format only shows the author name and date; full set of options available in PRETTY FORMAT docs)
+
 git push foo bar (push to remote repository foo branch bar)
 git svn dcommit (commit to svn repository)
 git checkout foobar (switch to branch foobar)
@@ -354,11 +358,10 @@ git fetch && git log ..origin/master (show incoming changes from a remote branch
 git log --left-right --cherry-pick --oneline foo..bar (show different commits not shared between the branches foo and bar)
 git cherry foo bar (show commits from branch bar that have to be applied to branch foo)
 
-
 git commit --amend -m "New commit message" (amend the tip of the current branch)
 git rebase -i origin/master (interactive rebase to "squash" the commited changes on your local repo - WARNING - this changes history so use it only when you didn't push your changes to other repos)
 git reset --soft HEAD~1 (delete the last commit - WARNING -changes history)
-git clean -f (delete untracked files from repo; -d is for directories)
+git clean -fdi (delete untracked files from repo; -f force; -d remove untracked directories also; -i interactive)
 
 git stash (stash the changes in a dirty working directory away)
 git stash pop (remove a single stashed state from the stash list and apply it on top of the current working tree)
