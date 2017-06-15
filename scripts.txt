@@ -1,0 +1,24 @@
+
+# Changes author and commiter date for all commits in the history
+# in the master branch - useful when you commited all your changes on a VM with skewed clock
+# 
+# $newdate sets the date to +3hours of the original author date
+# 
+# Notes: using this script creates a 'backup' refs/original/*
+# It can be removed with git update-ref -d refs/original/refs/heads/master
+# 
+# Tested on Ubuntu 16.06 
+#
+for commit in $(git rev-list --date-order master); do
+  commitdate=$(git --no-pager log --pretty=%ad --date=format:%c -1 $commit)
+  newdate=$(date -d $commitdate" + 3 hours" +"%a %d %b %Y %H:%m:%M %z")
+  echo "Changing date for commit "$commit" to date: "$newdate
+
+  git filter-branch --env-filter '
+      if test "$GIT_COMMIT" = '"$commit"'
+      then
+            GIT_AUTHOR_DATE="'$newdate'"
+          GIT_COMMITTER_DATE="'$newdate'"
+      fi
+  ' -f
+done
