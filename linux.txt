@@ -417,8 +417,9 @@ TERMINAL SHORTCUTS
 Ctrl+C (kills current process by sending interrupt signal: INT)
 Ctrl+D (sends the quit signal to current process: QUIT)
 Ctrl+L (clear the terminal screen)
-Arrow up / down (displays the previously used commands)
-Shift+Insert (paste)
+Ctrl+R (search through your command line history)
+Ctrl+P / Ctrl+N / Arrow up / down (displays the previous/next commands from your history)
+Shift+Insert (paste - linux only)
 
 Alt+SysRq+reisub (magic sysreq - safely reboot frozen linux machine)
 
@@ -427,8 +428,4 @@ USESFUL APPS
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 fail2ban (monitors log files and temporarily or persistently bans failure-prone addresses by updating existing firewall rules)
 etckeeper (store /etc in git, mercurial, bzr or darcs)
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!
-HOMESTEAD
-!!!!!!!!!!!!!!!!!!!!!!!!!!!
-serve foo.local /foo/bar/public 80 (Homestead 5.0 - serve foo.local from folder /foo/bar/public on port 80)
+jpegoptim --strip-all -m85 -o -p image.jpg (optimize jpg images; compress it to 85%; -o overwrite target; -p preserve modification times) 
