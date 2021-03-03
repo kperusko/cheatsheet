@@ -236,6 +236,14 @@ To copy file foo from the server you can use:
 -R 22222:localhost:22  
 scp -P 22222 foo localhost:
 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+SSH Keygen
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ssh-keygen -a 100 -t ed25519 -C "user@hostname" (generates a ssh key, -a numbers of KDF (Key Derivation Function) rounds (higher is better), -t type of key to create, -C comment)
+
+
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 SFTP - secure file transfer program
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
